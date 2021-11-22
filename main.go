@@ -46,10 +46,19 @@ func main() {
 	}
 
 	fmt.Println("Downloading version", tool.Version)
-	filename, err := tool.Download()
+	err = tool.Download()
 	if err != nil {
 		exit(err.Error())
 	}
-	defer os.Remove(filename)
-	fmt.Println("Downloaded", filename)
+	fmt.Println("Downloaded", tool.Asset.Name)
+
+	if !tool.Asset.IsBinary {
+		fmt.Println("Extracting binary")
+		err := tool.Extract()
+		if err != nil {
+			exit(err.Error())
+		}
+	}
+
+	fmt.Println("Done")
 }

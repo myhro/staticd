@@ -1,6 +1,8 @@
 package tools
 
 import (
+	"archive/tar"
+	"compress/gzip"
 	"fmt"
 	"io"
 	"net/http"
@@ -36,22 +38,75 @@ type Tool struct {
 	Version string
 }
 
-func (t *Tool) Download() (string, error) {
+func (t *Tool) Download() error {
 	resp, err := http.Get(fmt.Sprintf("%v/download/%v/%v", t.URL, t.Version, t.Asset.Name))
 	if err != nil {
-		return "", fmt.Errorf("http.Get: %w", err)
+		return fmt.Errorf("http.Get: %w", err)
 	}
 	defer resp.Body.Close()
 
 	filename := t.Asset.Name
+	if t.Asset.IsBinary {
+		filename = t.Asset.Destination
+	}
+
 	file, err := os.Create(filename)
 	if err != nil {
-		return "", fmt.Errorf("os.Create: %w", err)
+		return fmt.Errorf("os.Create: %w", err)
 	}
 	defer file.Close()
-	io.Copy(file, resp.Body)
 
-	return filename, nil
+	io.Copy(file, resp.Body)
+	if t.Asset.IsBinary {
+		err := file.Chmod(0755)
+		if err != nil {
+			return fmt.Errorf("file.Chmod: %w", err)
+		}
+	}
+
+	return nil
+}
+
+func (t *Tool) Extract() error {
+	file, err := os.Open(t.Asset.Name)
+	if err != nil {
+		return fmt.Errorf("os.Open: %w", err)
+	}
+	defer os.Remove(t.Asset.Name)
+	defer file.Close()
+
+	gzfile, err := gzip.NewReader(file)
+	if err != nil {
+		return fmt.Errorf("gzip.NewReader: %w", err)
+	}
+
+	binary, err := os.Create(t.Asset.Destination)
+	if err != nil {
+		return fmt.Errorf("os.Create: %w", err)
+	}
+	defer binary.Close()
+
+	err = binary.Chmod(0755)
+	if err != nil {
+		return fmt.Errorf("binary.Chmod: %w", err)
+	}
+
+	tr := tar.NewReader(gzfile)
+	for {
+		hdr, err := tr.Next()
+		if err == io.EOF {
+			break
+		} else if err != nil {
+			return fmt.Errorf("tr.Next: %w", err)
+		}
+
+		if hdr.Name == t.Asset.WithinArchive {
+			io.Copy(binary, tr)
+			break
+		}
+	}
+
+	return nil
 }
 
 func (t *Tool) GetVersion() error {
