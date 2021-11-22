@@ -5,6 +5,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"path"
 	"strings"
 
 	"github.com/myhro/staticd/tables"
@@ -12,17 +13,23 @@ import (
 
 const (
 	Bat           = "bat"
-	Bottom        = "bottom"
+	Bottom        = "btm"
 	Cloudflared   = "cloudflared"
 	DockerCompose = "docker-compose"
 	K9s           = "k9s"
 	Xh            = "xh"
 )
 
+type Asset struct {
+	Destination   string
+	IsBinary      bool
+	Name          string
+	WithinArchive string
+}
+
 type Tool struct {
 	Arch    string
-	Archive string
-	Folder  string
+	Asset   Asset
 	Name    string
 	OS      string
 	URL     string
@@ -30,13 +37,13 @@ type Tool struct {
 }
 
 func (t *Tool) Download() (string, error) {
-	resp, err := http.Get(fmt.Sprintf("%v/download/%v/%v", t.URL, t.Version, t.Archive))
+	resp, err := http.Get(fmt.Sprintf("%v/download/%v/%v", t.URL, t.Version, t.Asset.Name))
 	if err != nil {
 		return "", fmt.Errorf("http.Get: %w", err)
 	}
 	defer resp.Body.Close()
 
-	filename := t.Archive
+	filename := t.Asset.Name
 	file, err := os.Create(filename)
 	if err != nil {
 		return "", fmt.Errorf("os.Create: %w", err)
@@ -73,29 +80,38 @@ func (t *Tool) GetVersion() error {
 	return nil
 }
 
-func (t *Tool) SetArchive() error {
+func (t *Tool) SetAsset() error {
+	t.Asset.Destination = path.Join("/usr/local/bin/", t.Name)
+	t.Asset.WithinArchive = t.Name
+
 	switch t.Name {
 	case Bat:
-		t.Folder = fmt.Sprintf("bat-%v-%v-%v", t.Version, t.Arch, t.OS)
-		t.Archive = t.Folder + ".tar.gz"
+		baseName := fmt.Sprintf("bat-%v-%v-%v", t.Version, t.Arch, t.OS)
+		t.Asset.Name = baseName + ".tar.gz"
+		t.Asset.WithinArchive = path.Join(baseName, t.Name)
 	case Bottom:
-		t.Archive = fmt.Sprintf("bottom_%v-%v.tar.gz", t.Arch, t.OS)
+		t.Asset.Name = fmt.Sprintf("bottom_%v-%v.tar.gz", t.Arch, t.OS)
 	case Cloudflared:
-		t.Archive = fmt.Sprintf("cloudflared-%v-%v", t.OS, t.Arch)
+		t.Asset.Name = fmt.Sprintf("cloudflared-%v-%v", t.OS, t.Arch)
+		t.Asset.IsBinary = true
 		if t.OS == "darwin" {
-			t.Archive += ".tgz"
+			t.Asset.Name += ".tgz"
+			t.Asset.IsBinary = false
 		}
 	case DockerCompose:
-		t.Archive = fmt.Sprintf("docker-compose-%v-%v", t.OS, t.Arch)
+		t.Asset.Name = fmt.Sprintf("docker-compose-%v-%v", t.OS, t.Arch)
+		t.Asset.Destination = path.Join("/usr/libexec/docker/cli-plugins/", t.Name)
+		t.Asset.IsBinary = true
 	case K9s:
-		t.Archive = fmt.Sprintf("k9s_%v_%v.tar.gz", t.OS, t.Arch)
+		t.Asset.Name = fmt.Sprintf("k9s_%v_%v.tar.gz", t.OS, t.Arch)
 	case Xh:
-		t.Folder = fmt.Sprintf("xh-%v-%v-%v", t.Version, t.Arch, t.OS)
-		t.Archive = t.Folder + ".tar.gz"
+		baseName := fmt.Sprintf("xh-%v-%v-%v", t.Version, t.Arch, t.OS)
+		t.Asset.Name = baseName + ".tar.gz"
+		t.Asset.WithinArchive = path.Join(baseName, t.Name)
 	}
 
-	if t.Archive == "" {
-		return fmt.Errorf("empty archive name")
+	if t.Asset.Name == "" {
+		return fmt.Errorf("empty asset name")
 	}
 
 	return nil

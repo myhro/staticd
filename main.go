@@ -40,7 +40,7 @@ func main() {
 		exit(err.Error())
 	}
 
-	err = tool.SetArchive()
+	err = tool.SetAsset()
 	if err != nil {
 		exit(err.Error())
 	}

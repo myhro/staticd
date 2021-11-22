@@ -2,7 +2,7 @@ package tables
 
 const (
 	Bat           = "bat"
-	Bottom        = "bottom"
+	Bottom        = "btm"
 	Cloudflared   = "cloudflared"
 	DockerCompose = "docker-compose"
 	K9s           = "k9s"
