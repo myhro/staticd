@@ -11,6 +11,7 @@ import (
 )
 
 func exit(msg string) {
+	//nolint:errcheck
 	io.WriteString(os.Stderr, fmt.Sprintf("Error: %v\n", msg))
 	os.Exit(1)
 }
@@ -35,6 +36,7 @@ func main() {
 	}
 
 	fmt.Println("Checking version for", tool.Name)
+
 	err = tool.GetVersion()
 	if err != nil {
 		exit(err.Error())
@@ -46,14 +48,17 @@ func main() {
 	}
 
 	fmt.Println("Downloading version", tool.Version)
+
 	err = tool.Download()
 	if err != nil {
 		exit(err.Error())
 	}
+
 	fmt.Println("Downloaded", tool.Asset.Name)
 
 	if !tool.Asset.IsBinary {
 		fmt.Println("Extracting binary")
+
 		err := tool.Extract()
 		if err != nil {
 			exit(err.Error())

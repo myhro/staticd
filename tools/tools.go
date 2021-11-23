@@ -3,6 +3,7 @@ package tools
 import (
 	"archive/tar"
 	"compress/gzip"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -48,19 +49,15 @@ func (t *Tool) Download() error {
 	filename := t.Asset.Name
 	if t.Asset.IsBinary {
 		filename = t.Asset.Destination
-	}
 
-	file, err := os.Create(filename)
-	if err != nil {
-		return fmt.Errorf("os.Create: %w", err)
-	}
-	defer file.Close()
-
-	io.Copy(file, resp.Body)
-	if t.Asset.IsBinary {
-		err := file.Chmod(0755)
+		err := t.SaveBinary(resp.Body, filename)
 		if err != nil {
-			return fmt.Errorf("file.Chmod: %w", err)
+			return fmt.Errorf("t.SaveBinary: %w", err)
+		}
+	} else {
+		err := t.SaveFile(resp.Body, filename)
+		if err != nil {
+			return fmt.Errorf("t.SaveFile: %w", err)
 		}
 	}
 
@@ -72,6 +69,7 @@ func (t *Tool) Extract() error {
 	if err != nil {
 		return fmt.Errorf("os.Open: %w", err)
 	}
+
 	defer os.Remove(t.Asset.Name)
 	defer file.Close()
 
@@ -80,28 +78,22 @@ func (t *Tool) Extract() error {
 		return fmt.Errorf("gzip.NewReader: %w", err)
 	}
 
-	binary, err := os.Create(t.Asset.Destination)
-	if err != nil {
-		return fmt.Errorf("os.Create: %w", err)
-	}
-	defer binary.Close()
-
-	err = binary.Chmod(0755)
-	if err != nil {
-		return fmt.Errorf("binary.Chmod: %w", err)
-	}
-
 	tr := tar.NewReader(gzfile)
+
 	for {
 		hdr, err := tr.Next()
-		if err == io.EOF {
+		if errors.Is(err, io.EOF) {
 			break
 		} else if err != nil {
 			return fmt.Errorf("tr.Next: %w", err)
 		}
 
 		if hdr.Name == t.Asset.WithinArchive {
-			io.Copy(binary, tr)
+			err := t.SaveBinary(tr, t.Asset.Destination)
+			if err != nil {
+				return fmt.Errorf("t.SaveBinary: %w", err)
+			}
+
 			break
 		}
 	}
@@ -120,6 +112,7 @@ func (t *Tool) GetVersion() error {
 	if err != nil {
 		return fmt.Errorf("client.Head: %w", err)
 	}
+	defer resp.Body.Close()
 
 	loc, err := resp.Location()
 	if err != nil {
@@ -130,7 +123,37 @@ func (t *Tool) GetVersion() error {
 	if len(list) == 0 {
 		return fmt.Errorf("strings.Split: empty slice")
 	}
+
 	t.Version = list[len(list)-1]
+
+	return nil
+}
+
+func (t *Tool) SaveBinary(src io.Reader, dest string) error {
+	err := t.SaveFile(src, dest)
+	if err != nil {
+		return fmt.Errorf("t.SaveFile: %w", err)
+	}
+
+	err = os.Chmod(dest, 0755)
+	if err != nil {
+		return fmt.Errorf("os.Chmod: %w", err)
+	}
+
+	return nil
+}
+
+func (t *Tool) SaveFile(src io.Reader, dest string) error {
+	file, err := os.Create(dest)
+	if err != nil {
+		return fmt.Errorf("os.Create: %w", err)
+	}
+	defer file.Close()
+
+	_, err = io.Copy(file, src)
+	if !errors.Is(err, io.EOF) && err != nil {
+		return fmt.Errorf("io.Copy: %w", err)
+	}
 
 	return nil
 }
@@ -149,6 +172,7 @@ func (t *Tool) SetAsset() error {
 	case Cloudflared:
 		t.Asset.Name = fmt.Sprintf("cloudflared-%v-%v", t.OS, t.Arch)
 		t.Asset.IsBinary = true
+
 		if t.OS == "darwin" {
 			t.Asset.Name += ".tgz"
 			t.Asset.IsBinary = false
@@ -188,5 +212,6 @@ func (t *Tool) SetURL() error {
 	if t.URL == "" {
 		return fmt.Errorf("no url defined for: %v", t.Name)
 	}
+
 	return nil
 }
