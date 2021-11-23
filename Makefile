@@ -1,8 +1,9 @@
 BINARY ?= staticd
+VERSION ?= $(shell ./scripts/version.sh)
 
 build:
 	mkdir -p dist/
-	go build -ldflags="-s -w" -o dist/$(BINARY)
+	go build -ldflags="-s -w -X main.version=$(VERSION)" -o dist/$(BINARY)
 
 clean:
 	rm -rf dist/
