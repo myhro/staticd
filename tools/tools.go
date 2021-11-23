@@ -46,18 +46,15 @@ func (t *Tool) Download() error {
 	}
 	defer resp.Body.Close()
 
-	filename := t.Asset.Name
 	if t.Asset.IsBinary {
-		filename = t.Asset.Destination
-
-		err := t.SaveBinary(resp.Body, filename)
+		err := saveBinary(resp.Body, t.Asset.Destination)
 		if err != nil {
-			return fmt.Errorf("t.SaveBinary: %w", err)
+			return fmt.Errorf("saveBinary: %w", err)
 		}
 	} else {
-		err := t.SaveFile(resp.Body, filename)
+		err := saveFile(resp.Body, t.Asset.Name)
 		if err != nil {
-			return fmt.Errorf("t.SaveFile: %w", err)
+			return fmt.Errorf("saveFile: %w", err)
 		}
 	}
 
@@ -89,9 +86,9 @@ func (t *Tool) Extract() error {
 		}
 
 		if hdr.Name == t.Asset.WithinArchive {
-			err := t.SaveBinary(tr, t.Asset.Destination)
+			err := saveBinary(tr, t.Asset.Destination)
 			if err != nil {
-				return fmt.Errorf("t.SaveBinary: %w", err)
+				return fmt.Errorf("saveBinary: %w", err)
 			}
 
 			break
@@ -125,35 +122,6 @@ func (t *Tool) GetVersion() error {
 	}
 
 	t.Version = list[len(list)-1]
-
-	return nil
-}
-
-func (t *Tool) SaveBinary(src io.Reader, dest string) error {
-	err := t.SaveFile(src, dest)
-	if err != nil {
-		return fmt.Errorf("t.SaveFile: %w", err)
-	}
-
-	err = os.Chmod(dest, 0755)
-	if err != nil {
-		return fmt.Errorf("os.Chmod: %w", err)
-	}
-
-	return nil
-}
-
-func (t *Tool) SaveFile(src io.Reader, dest string) error {
-	file, err := os.Create(dest)
-	if err != nil {
-		return fmt.Errorf("os.Create: %w", err)
-	}
-	defer file.Close()
-
-	_, err = io.Copy(file, src)
-	if !errors.Is(err, io.EOF) && err != nil {
-		return fmt.Errorf("io.Copy: %w", err)
-	}
 
 	return nil
 }
