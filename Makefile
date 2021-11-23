@@ -18,3 +18,6 @@ test:
 
 upx:
 	upx dist/*
+
+yamllint:
+	yamllint --format colored --strict .github/workflows/ .golangci.yml .yamllint.yml
