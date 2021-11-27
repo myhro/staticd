@@ -23,8 +23,7 @@ jobs:
           go-version: 1.17
       - name: Install dependencies
         run: |
-          wget https://github.com/upx/upx/releases/download/v3.96/upx-3.96-amd64_linux.tar.xz
-          sudo tar -C /usr/local/bin/ -xf upx-3.96-amd64_linux.tar.xz --strip 1 upx-3.96-amd64_linux/upx
+          sudo go run main.go upx
       - name: Build
         env:
           BINARY: staticd-${{ matrix.job.os }}-${{ matrix.job.arch }}
