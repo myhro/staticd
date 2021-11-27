@@ -19,6 +19,7 @@ const (
 	Cloudflared   = "cloudflared"
 	DockerCompose = "docker-compose"
 	K9s           = "k9s"
+	UPX           = "upx"
 	Xh            = "xh"
 )
 
@@ -150,6 +151,11 @@ func (t *Tool) SetAsset() error {
 		t.Asset.IsBinary = true
 	case K9s:
 		t.Asset.Name = fmt.Sprintf("k9s_%v_%v.tar.gz", t.OS, t.Arch)
+	case UPX:
+		version := strings.TrimPrefix(t.Version, "v")
+		baseName := fmt.Sprintf("upx-%v-%v_%v", version, t.Arch, t.OS)
+		t.Asset.Name = baseName + ".tar.xz"
+		t.Asset.WithinArchive = path.Join(baseName, t.Name)
 	case Xh:
 		baseName := fmt.Sprintf("xh-%v-%v-%v", t.Version, t.Arch, t.OS)
 		t.Asset.Name = baseName + ".tar.gz"

@@ -43,6 +43,10 @@ func (s *TablesTestSuite) TestToolsNames() {
 			remote: tools.K9s,
 		},
 		{
+			local:  tables.UPX,
+			remote: tools.UPX,
+		},
+		{
 			local:  tables.Xh,
 			remote: tools.Xh,
 		},

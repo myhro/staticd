@@ -1,4 +1,4 @@
 staticd
 =======
 
-Download statically linked Go/Rust binaries from GitHub.
+Download statically linked binaries from GitHub.

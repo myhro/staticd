@@ -51,6 +51,12 @@ func (s *AssetTestSuite) TestDestination() {
 		},
 		{
 			tool: &Tool{
+				Name: UPX,
+			},
+			dest: "/usr/local/bin/upx",
+		},
+		{
+			tool: &Tool{
 				Name: Xh,
 			},
 			dest: "/usr/local/bin/xh",
@@ -119,6 +125,15 @@ func (s *AssetTestSuite) TestIsBinary() {
 			tool: &Tool{
 				Name:    K9s,
 				Version: "v0.25.4",
+			},
+			arch:   "amd64",
+			os:     "linux",
+			binary: false,
+		},
+		{
+			tool: &Tool{
+				Name:    UPX,
+				Version: "v3.96",
 			},
 			arch:   "amd64",
 			os:     "linux",
@@ -196,6 +211,15 @@ func (s *AssetTestSuite) TestName() {
 		},
 		{
 			tool: &Tool{
+				Name:    UPX,
+				Version: "v3.96",
+			},
+			arch: "amd64",
+			os:   "linux",
+			name: "upx-3.96-amd64_linux.tar.xz",
+		},
+		{
+			tool: &Tool{
 				Name:    Xh,
 				Version: "v0.14.0",
 			},
@@ -263,6 +287,15 @@ func (s *AssetTestSuite) TestWithinArchive() {
 			arch:          "amd64",
 			os:            "linux",
 			withinArchive: "k9s",
+		},
+		{
+			tool: &Tool{
+				Name:    UPX,
+				Version: "v3.96",
+			},
+			arch:          "amd64",
+			os:            "linux",
+			withinArchive: "upx-3.96-amd64_linux/upx",
 		},
 		{
 			tool: &Tool{

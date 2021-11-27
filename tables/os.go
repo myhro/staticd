@@ -43,6 +43,12 @@ var OS = map[string]map[string]map[string]string{
 			"arm":   "Linux",
 		},
 	},
+	UPX: {
+		"linux": {
+			"amd64": "linux",
+			"arm":   "linux",
+		},
+	},
 	Xh: {
 		"darwin": {
 			"amd64": "apple-darwin",

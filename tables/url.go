@@ -6,5 +6,6 @@ var URL = map[string]string{
 	Cloudflared:   "https://github.com/cloudflare/cloudflared/releases",
 	DockerCompose: "https://github.com/docker/compose/releases",
 	K9s:           "https://github.com/derailed/k9s/releases",
+	UPX:           "https://github.com/upx/upx/releases",
 	Xh:            "https://github.com/ducaale/xh/releases",
 }

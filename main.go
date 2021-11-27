@@ -117,6 +117,14 @@ func main() {
 		},
 	}
 
+	upxCmd := &cobra.Command{
+		Use:   tools.UPX,
+		Short: "The Ultimate Packer for eXecutables",
+		Run: func(cmd *cobra.Command, args []string) {
+			run(tools.UPX)
+		},
+	}
+
 	xhCmd := &cobra.Command{
 		Use:   tools.Xh,
 		Short: "Friendly and fast tool for sending HTTP requests",
@@ -138,6 +146,7 @@ func main() {
 	rootCmd.AddCommand(cloudflaredCmd)
 	rootCmd.AddCommand(dockerComposeCmd)
 	rootCmd.AddCommand(k9sCmd)
+	rootCmd.AddCommand(upxCmd)
 	rootCmd.AddCommand(xhCmd)
 	rootCmd.AddCommand(versionCmd)
 

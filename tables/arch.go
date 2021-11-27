@@ -43,6 +43,12 @@ var Arch = map[string]map[string]map[string]string{
 			"arm":   "arm",
 		},
 	},
+	UPX: {
+		"linux": {
+			"amd64": "amd64",
+			"arm":   "arm",
+		},
+	},
 	Xh: {
 		"darwin": {
 			"amd64": "x86_64",
