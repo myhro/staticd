@@ -11,27 +11,25 @@ import (
 	"github.com/ulikunitz/xz"
 )
 
-func compressedReader(file *os.File) (io.Reader, error) {
-	var comp io.Reader
-
-	var err error
-
+func compressedReader(reader io.Reader, name string) (io.Reader, error) {
 	switch {
-	case strings.HasSuffix(file.Name(), ".gz"):
-		comp, err = gzip.NewReader(file)
+	case strings.HasSuffix(name, ".gz"):
+		comp, err := gzip.NewReader(reader)
 		if err != nil {
 			return nil, fmt.Errorf("gzip.NewReader: %w", err)
 		}
-	case strings.HasSuffix(file.Name(), ".xz"):
-		comp, err = xz.NewReader(file)
+
+		return comp, nil
+	case strings.HasSuffix(name, ".xz"):
+		comp, err := xz.NewReader(reader)
 		if err != nil {
 			return nil, fmt.Errorf("xz.NewReader: %w", err)
 		}
-	default:
-		return nil, fmt.Errorf("unknown archive type for %v", file.Name())
+
+		return comp, nil
 	}
 
-	return comp, nil
+	return nil, fmt.Errorf("unknown archive type for %v", name)
 }
 
 func saveBinary(src io.Reader, dest string) error {

@@ -70,7 +70,7 @@ func (t *Tool) Extract() error {
 	defer os.Remove(t.Asset.Name)
 	defer file.Close()
 
-	compFile, err := compressedReader(file)
+	compFile, err := compressedReader(file, t.Asset.Name)
 	if err != nil {
 		return fmt.Errorf("compressedReader: %w", err)
 	}
