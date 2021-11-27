@@ -1,11 +1,38 @@
 package tools
 
 import (
+	"compress/gzip"
 	"errors"
 	"fmt"
 	"io"
 	"os"
+	"strings"
+
+	"github.com/ulikunitz/xz"
 )
+
+func compressedReader(file *os.File) (io.Reader, error) {
+	var comp io.Reader
+
+	var err error
+
+	switch {
+	case strings.HasSuffix(file.Name(), ".gz"):
+		comp, err = gzip.NewReader(file)
+		if err != nil {
+			return nil, fmt.Errorf("gzip.NewReader: %w", err)
+		}
+	case strings.HasSuffix(file.Name(), ".xz"):
+		comp, err = xz.NewReader(file)
+		if err != nil {
+			return nil, fmt.Errorf("xz.NewReader: %w", err)
+		}
+	default:
+		return nil, fmt.Errorf("unknown archive type for %v", file.Name())
+	}
+
+	return comp, nil
+}
 
 func saveBinary(src io.Reader, dest string) error {
 	err := saveFile(src, dest)

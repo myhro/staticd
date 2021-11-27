@@ -2,7 +2,6 @@ package tools
 
 import (
 	"archive/tar"
-	"compress/gzip"
 	"errors"
 	"fmt"
 	"io"
@@ -70,12 +69,12 @@ func (t *Tool) Extract() error {
 	defer os.Remove(t.Asset.Name)
 	defer file.Close()
 
-	gzfile, err := gzip.NewReader(file)
+	compFile, err := compressedReader(file)
 	if err != nil {
-		return fmt.Errorf("gzip.NewReader: %w", err)
+		return fmt.Errorf("compressedReader: %w", err)
 	}
 
-	tr := tar.NewReader(gzfile)
+	tr := tar.NewReader(compFile)
 
 	for {
 		hdr, err := tr.Next()
