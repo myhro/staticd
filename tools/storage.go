@@ -13,7 +13,7 @@ import (
 
 func compressedReader(reader io.Reader, name string) (io.Reader, error) {
 	switch {
-	case strings.HasSuffix(name, ".gz"):
+	case strings.HasSuffix(name, ".gz") || strings.HasSuffix(name, ".tgz"):
 		comp, err := gzip.NewReader(reader)
 		if err != nil {
 			return nil, fmt.Errorf("gzip.NewReader: %w", err)

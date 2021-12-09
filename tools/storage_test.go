@@ -38,6 +38,22 @@ func (s *StorageTestSuite) TestCompressedReaderUnknown() {
 	s.Error(err)
 }
 
+func (s *StorageTestSuite) TestCompressedReaderTGZ() {
+	name := "cloudflared-darwin-amd64.tgz"
+
+	buf := &bytes.Buffer{}
+	zw := gzip.NewWriter(buf)
+	_, err := zw.Write([]byte(name))
+	s.Nil(err)
+	err = zw.Close()
+	s.Nil(err)
+
+	comp, err := compressedReader(buf, name)
+	s.Nil(err)
+	_, ok := comp.(*gzip.Reader)
+	s.Equal(true, ok)
+}
+
 func (s *StorageTestSuite) TestCompressedReaderXZ() {
 	name := "upx-3.96-amd64_linux.tar.xz"
 
