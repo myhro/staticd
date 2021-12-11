@@ -118,7 +118,7 @@ func (t *Tool) GetVersion() error {
 
 	list := strings.Split(loc.Path, "/")
 	if len(list) == 0 {
-		return fmt.Errorf("strings.Split: empty slice")
+		return errors.New("strings.Split: empty slice")
 	}
 
 	t.Version = list[len(list)-1]
@@ -163,7 +163,7 @@ func (t *Tool) SetAsset() error {
 	}
 
 	if t.Asset.Name == "" {
-		return fmt.Errorf("empty asset name")
+		return errors.New("empty asset name")
 	}
 
 	return nil
