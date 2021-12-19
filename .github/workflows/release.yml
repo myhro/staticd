@@ -16,6 +16,8 @@ jobs:
             os: linux
           - arch: arm
             os: linux
+          - arch: arm64
+            os: linux
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-go@v2
@@ -50,3 +52,4 @@ jobs:
             dist/staticd-darwin-amd64
             dist/staticd-linux-amd64
             dist/staticd-linux-arm
+            dist/staticd-linux-arm64
