@@ -47,6 +47,16 @@ jobs:
           path: dist/
           name: dist
       - uses: softprops/action-gh-release@v1
+        if: contains(github.ref, '-rc')
+        with:
+          files: |
+            dist/staticd-darwin-amd64
+            dist/staticd-linux-amd64
+            dist/staticd-linux-arm
+            dist/staticd-linux-arm64
+          prerelease: true
+      - uses: softprops/action-gh-release@v1
+        if: contains(github.ref, '-rc') == false
         with:
           files: |
             dist/staticd-darwin-amd64
