@@ -1,4 +1,9 @@
 ---
+issues:
+  exclude-rules:
+    - path: tables/.*\.go
+      linters:
+        - dupl
 linters:
   enable-all: true
   disable:
