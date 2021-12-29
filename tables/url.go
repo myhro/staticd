@@ -8,4 +8,5 @@ var URL = map[string]string{
 	K9s:           "https://github.com/derailed/k9s/releases",
 	UPX:           "https://github.com/upx/upx/releases",
 	Xh:            "https://github.com/ducaale/xh/releases",
+	Yj:            "https://github.com/sclevine/yj/releases",
 }

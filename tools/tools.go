@@ -21,6 +21,7 @@ const (
 	K9s           = "k9s"
 	UPX           = "upx"
 	Xh            = "xh"
+	Yj            = "yj"
 )
 
 type Asset struct {
@@ -145,6 +146,8 @@ func (t *Tool) SetAsset() error {
 		t.AssetUPX()
 	case Xh:
 		t.AssetXh()
+	case Yj:
+		t.AssetYj()
 	}
 
 	if t.Asset.Name == "" {
@@ -155,10 +158,11 @@ func (t *Tool) SetAsset() error {
 }
 
 func (t *Tool) SetRuntime(arch string, os string) error {
-	t.Arch = tables.Arch[t.Name][os][arch]
-	t.OS = tables.OS[t.Name][os][arch]
+	var archOk, osOk bool
+	t.Arch, archOk = tables.Arch[t.Name][os][arch]
+	t.OS, osOk = tables.OS[t.Name][os][arch]
 
-	if t.Arch == "" || t.OS == "" {
+	if !archOk || !osOk {
 		return fmt.Errorf("no candidate for %v on %v/%v", t.Name, os, arch)
 	}
 

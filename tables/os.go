@@ -64,4 +64,14 @@ var OS = map[string]map[string]map[string]string{
 			"arm":   "unknown-linux-gnueabihf",
 		},
 	},
+	Yj: {
+		"darwin": {
+			"amd64": "macos",
+		},
+		"linux": {
+			"amd64": "linux",
+			"arm":   "linux",
+			"arm64": "linux",
+		},
+	},
 }

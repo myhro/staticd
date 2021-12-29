@@ -133,6 +133,14 @@ func main() {
 		},
 	}
 
+	yjCmd := &cobra.Command{
+		Use:   tools.Yj,
+		Short: "Convert between YAML, TOML, JSON, and HCL",
+		Run: func(cmd *cobra.Command, args []string) {
+			run(tools.Yj)
+		},
+	}
+
 	versionCmd := &cobra.Command{
 		Use:   "version",
 		Short: "Show version",
@@ -148,6 +156,7 @@ func main() {
 	rootCmd.AddCommand(k9sCmd)
 	rootCmd.AddCommand(upxCmd)
 	rootCmd.AddCommand(xhCmd)
+	rootCmd.AddCommand(yjCmd)
 	rootCmd.AddCommand(versionCmd)
 
 	err := rootCmd.Execute()

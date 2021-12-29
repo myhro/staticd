@@ -48,3 +48,12 @@ func (t *Tool) AssetXh() {
 	t.Asset.Name = baseName + ".tar.gz"
 	t.Asset.WithinArchive = path.Join(baseName, t.Name)
 }
+
+func (t *Tool) AssetYj() {
+	t.Asset.IsBinary = true
+	t.Asset.Name = fmt.Sprintf("yj-%v", t.OS)
+
+	if t.Arch != "" {
+		t.Asset.Name += fmt.Sprintf("-%v", t.Arch)
+	}
+}

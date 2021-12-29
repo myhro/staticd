@@ -61,6 +61,12 @@ func (s *AssetTestSuite) TestDestination() {
 			},
 			dest: "/usr/local/bin/xh",
 		},
+		{
+			tool: &Tool{
+				Name: Yj,
+			},
+			dest: "/usr/local/bin/yj",
+		},
 	}
 
 	for _, tt := range table {
@@ -148,6 +154,15 @@ func (s *AssetTestSuite) TestIsBinary() {
 			os:     "linux",
 			binary: false,
 		},
+		{
+			tool: &Tool{
+				Name:    Yj,
+				Version: "v5.0.0",
+			},
+			arch:   "amd64",
+			os:     "linux",
+			binary: true,
+		},
 	}
 
 	for _, tt := range table {
@@ -226,6 +241,24 @@ func (s *AssetTestSuite) TestName() {
 			arch: "amd64",
 			os:   "linux",
 			name: "xh-v0.14.0-x86_64-unknown-linux-musl.tar.gz",
+		},
+		{
+			tool: &Tool{
+				Name:    Yj,
+				Version: "v5.0.0",
+			},
+			arch: "amd64",
+			os:   "linux",
+			name: "yj-linux",
+		},
+		{
+			tool: &Tool{
+				Name:    Yj,
+				Version: "v5.0.0",
+			},
+			arch: "arm",
+			os:   "linux",
+			name: "yj-linux-arm-v7",
 		},
 	}
 

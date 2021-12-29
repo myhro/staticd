@@ -8,4 +8,5 @@ const (
 	K9s           = "k9s"
 	UPX           = "upx"
 	Xh            = "xh"
+	Yj            = "yj"
 )
