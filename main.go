@@ -71,7 +71,7 @@ func run(name string) {
 func main() {
 	rootCmd := &cobra.Command{
 		Use:   "staticd",
-		Short: "Download statically linked Go/Rust binaries from GitHub",
+		Short: "Download statically linked binaries from GitHub",
 		CompletionOptions: cobra.CompletionOptions{
 			DisableDefaultCmd: true,
 		},
