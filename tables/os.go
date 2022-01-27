@@ -62,6 +62,7 @@ var OS = map[string]map[string]map[string]string{
 		"linux": {
 			"amd64": "unknown-linux-musl",
 			"arm":   "unknown-linux-gnueabihf",
+			"arm64": "unknown-linux-musl",
 		},
 	},
 	Yj: {

@@ -62,6 +62,7 @@ var Arch = map[string]map[string]map[string]string{
 		"linux": {
 			"amd64": "x86_64",
 			"arm":   "arm",
+			"arm64": "aarch64",
 		},
 	},
 	Yj: {
