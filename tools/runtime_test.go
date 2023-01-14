@@ -168,6 +168,50 @@ func (s *RuntimeTestSuite) TestInvalidRuntime() {
 	s.Error(err)
 }
 
+func (s *RuntimeTestSuite) TestFlyctlRuntime() {
+	table := []struct {
+		arch    string
+		os      string
+		archOut string
+		osOut   string
+	}{
+		{
+			arch:    "amd64",
+			os:      "linux",
+			archOut: "x86_64",
+			osOut:   "Linux",
+		},
+		{
+			arch:    "amd64",
+			os:      "darwin",
+			archOut: "x86_64",
+			osOut:   "macOS",
+		},
+		{
+			arch:    "arm64",
+			os:      "linux",
+			archOut: "arm64",
+			osOut:   "Linux",
+		},
+		{
+			arch:    "arm64",
+			os:      "darwin",
+			archOut: "arm64",
+			osOut:   "macOS",
+		},
+	}
+
+	for _, tt := range table {
+		t := &Tool{
+			Name: Flyctl,
+		}
+		err := t.SetRuntime(tt.arch, tt.os)
+		s.Nil(err)
+		s.Equal(tt.archOut, t.Arch)
+		s.Equal(tt.osOut, t.OS)
+	}
+}
+
 func (s *RuntimeTestSuite) TestK9sRuntime() {
 	table := []struct {
 		arch    string

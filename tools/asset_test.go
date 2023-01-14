@@ -45,6 +45,12 @@ func (s *AssetTestSuite) TestDestination() {
 		},
 		{
 			tool: &Tool{
+				Name: Flyctl,
+			},
+			dest: "/usr/local/bin/flyctl",
+		},
+		{
+			tool: &Tool{
 				Name: K9s,
 			},
 			dest: "/usr/local/bin/k9s",
@@ -126,6 +132,15 @@ func (s *AssetTestSuite) TestIsBinary() {
 			arch:   "amd64",
 			os:     "linux",
 			binary: true,
+		},
+		{
+			tool: &Tool{
+				Name:    Flyctl,
+				Version: "v0.0.450",
+			},
+			arch:   "amd64",
+			os:     "linux",
+			binary: false,
 		},
 		{
 			tool: &Tool{
@@ -214,6 +229,15 @@ func (s *AssetTestSuite) TestName() {
 			arch: "amd64",
 			os:   "linux",
 			name: "docker-compose-linux-x86_64",
+		},
+		{
+			tool: &Tool{
+				Name:    Flyctl,
+				Version: "v0.0.450",
+			},
+			arch: "amd64",
+			os:   "linux",
+			name: "flyctl_0.0.450_Linux_x86_64.tar.gz",
 		},
 		{
 			tool: &Tool{
@@ -311,6 +335,15 @@ func (s *AssetTestSuite) TestWithinArchive() {
 			arch:          "amd64",
 			os:            "linux",
 			withinArchive: "docker-compose",
+		},
+		{
+			tool: &Tool{
+				Name:    Flyctl,
+				Version: "v0.0.450",
+			},
+			arch:          "amd64",
+			os:            "linux",
+			withinArchive: "flyctl",
 		},
 		{
 			tool: &Tool{
