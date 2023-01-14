@@ -109,6 +109,14 @@ func main() {
 		},
 	}
 
+	flyctlCmd := &cobra.Command{
+		Use:   tools.Flyctl,
+		Short: "Command line tools for fly.io services",
+		Run: func(cmd *cobra.Command, args []string) {
+			run(tools.Flyctl)
+		},
+	}
+
 	k9sCmd := &cobra.Command{
 		Use:   tools.K9s,
 		Short: "Kubernetes CLI To Manage Your Clusters In Style",
@@ -153,6 +161,7 @@ func main() {
 	rootCmd.AddCommand(bottomCmd)
 	rootCmd.AddCommand(cloudflaredCmd)
 	rootCmd.AddCommand(dockerComposeCmd)
+	rootCmd.AddCommand(flyctlCmd)
 	rootCmd.AddCommand(k9sCmd)
 	rootCmd.AddCommand(upxCmd)
 	rootCmd.AddCommand(xhCmd)

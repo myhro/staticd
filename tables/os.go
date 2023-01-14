@@ -38,6 +38,16 @@ var OS = map[string]map[string]map[string]string{
 			"arm64": "linux",
 		},
 	},
+	Flyctl: {
+		"darwin": {
+			"amd64": "macOS",
+			"arm64": "macOS",
+		},
+		"linux": {
+			"amd64": "Linux",
+			"arm64": "Linux",
+		},
+	},
 	K9s: {
 		"darwin": {
 			"amd64": "Darwin",

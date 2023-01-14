@@ -3,7 +3,6 @@ package tools
 import (
 	"fmt"
 	"path"
-	"strings"
 )
 
 func (t *Tool) AssetBat() {
@@ -31,14 +30,16 @@ func (t *Tool) AssetDockerCompose() {
 	t.Asset.Destination = path.Join("/usr/libexec/docker/cli-plugins/", t.Name)
 	t.Asset.IsBinary = true
 }
+func (t *Tool) AssetFlyctl() {
+	t.Asset.Name = fmt.Sprintf("flyctl_%v_%v_%v.tar.gz", t.TrimVersion(), t.OS, t.Arch)
+}
 
 func (t *Tool) AssetK9s() {
 	t.Asset.Name = fmt.Sprintf("k9s_%v_%v.tar.gz", t.OS, t.Arch)
 }
 
 func (t *Tool) AssetUPX() {
-	version := strings.TrimPrefix(t.Version, "v")
-	baseName := fmt.Sprintf("upx-%v-%v_%v", version, t.Arch, t.OS)
+	baseName := fmt.Sprintf("upx-%v-%v_%v", t.TrimVersion(), t.Arch, t.OS)
 	t.Asset.Name = baseName + ".tar.xz"
 	t.Asset.WithinArchive = path.Join(baseName, t.Name)
 }
