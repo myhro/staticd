@@ -38,6 +38,16 @@ var Arch = map[string]map[string]map[string]string{
 			"arm64": "aarch64",
 		},
 	},
+	Flyctl: {
+		"darwin": {
+			"amd64": "x86_64",
+			"arm64": "arm64",
+		},
+		"linux": {
+			"amd64": "x86_64",
+			"arm64": "arm64",
+		},
+	},
 	K9s: {
 		"darwin": {
 			"amd64": "x86_64",

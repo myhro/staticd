@@ -39,6 +39,10 @@ func (s *TablesTestSuite) TestToolsNames() {
 			remote: tools.DockerCompose,
 		},
 		{
+			local:  tables.Flyctl,
+			remote: tools.Flyctl,
+		},
+		{
 			local:  tables.K9s,
 			remote: tools.K9s,
 		},
