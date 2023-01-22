@@ -33,6 +33,9 @@ jobs:
           GOOS: ${{ matrix.job.os }}
         run: |
           make build
+      - name: UPX
+        if: matrix.job.os != 'darwin'
+        run: |
           make upx
       - uses: actions/upload-artifact@v2
         with:
