@@ -10,9 +10,9 @@ jobs:
       - name: Install dependencies
         run: |
           pip install yamllint==1.26.*
-      - uses: golangci/golangci-lint-action@v2
+      - uses: golangci/golangci-lint-action@v3
         with:
-          version: v1.50.1
+          version: v1.51.1
       - name: Check
         run: |
           make yamllint
