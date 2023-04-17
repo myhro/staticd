@@ -11,11 +11,14 @@ clean:
 golangci-lint:
 	go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.43.0
 
+gotestsum:
+	go install gotest.tools/gotestsum@v1.10.0
+
 lint:
 	golangci-lint run
 
 test:
-	go test -v ./...
+	gotestsum
 
 upx:
 	upx dist/*

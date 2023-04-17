@@ -21,6 +21,9 @@ jobs:
       - uses: actions/setup-go@v3
         with:
           go-version-file: go.mod
+      - name: Install dependencies
+        run: |
+          make gotestsum
       - name: Test
         run: |
           make test
