@@ -31,13 +31,6 @@ var OS = map[string]map[string]map[string]string{
 			"arm64": "linux",
 		},
 	},
-	DockerCompose: {
-		"linux": {
-			"amd64": "linux",
-			"arm":   "linux",
-			"arm64": "linux",
-		},
-	},
 	Flyctl: {
 		"darwin": {
 			"amd64": "macOS",

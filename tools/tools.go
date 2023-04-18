@@ -14,15 +14,14 @@ import (
 )
 
 const (
-	Bat           = "bat"
-	Bottom        = "btm"
-	Cloudflared   = "cloudflared"
-	DockerCompose = "docker-compose"
-	Flyctl        = "flyctl"
-	K9s           = "k9s"
-	UPX           = "upx"
-	Xh            = "xh"
-	Yj            = "yj"
+	Bat         = "bat"
+	Bottom      = "btm"
+	Cloudflared = "cloudflared"
+	Flyctl      = "flyctl"
+	K9s         = "k9s"
+	UPX         = "upx"
+	Xh          = "xh"
+	Yj          = "yj"
 )
 
 type Asset struct {
@@ -128,7 +127,6 @@ func (t *Tool) GetVersion() error {
 	return nil
 }
 
-//nolint:cyclop
 func (t *Tool) SetAsset() error {
 	t.Asset.Destination = path.Join("/usr/local/bin/", t.Name)
 	t.Asset.WithinArchive = t.Name
@@ -140,8 +138,6 @@ func (t *Tool) SetAsset() error {
 		t.AssetBottom()
 	case Cloudflared:
 		t.AssetCloudflared()
-	case DockerCompose:
-		t.AssetDockerCompose()
 	case Flyctl:
 		t.AssetFlyctl()
 	case K9s:

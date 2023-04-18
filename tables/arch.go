@@ -31,13 +31,6 @@ var Arch = map[string]map[string]map[string]string{
 			"arm64": "arm64",
 		},
 	},
-	DockerCompose: {
-		"linux": {
-			"amd64": "x86_64",
-			"arm":   "armv7",
-			"arm64": "aarch64",
-		},
-	},
 	Flyctl: {
 		"darwin": {
 			"amd64": "x86_64",

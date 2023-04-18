@@ -39,12 +39,6 @@ func (s *AssetTestSuite) TestDestination() {
 		},
 		{
 			tool: &Tool{
-				Name: DockerCompose,
-			},
-			dest: "/usr/libexec/docker/cli-plugins/docker-compose",
-		},
-		{
-			tool: &Tool{
 				Name: Flyctl,
 			},
 			dest: "/usr/local/bin/flyctl",
@@ -119,15 +113,6 @@ func (s *AssetTestSuite) TestIsBinary() {
 			tool: &Tool{
 				Name:    Cloudflared,
 				Version: "2021.11.0",
-			},
-			arch:   "amd64",
-			os:     "linux",
-			binary: true,
-		},
-		{
-			tool: &Tool{
-				Name:    DockerCompose,
-				Version: "v2.1.1",
 			},
 			arch:   "amd64",
 			os:     "linux",
@@ -220,15 +205,6 @@ func (s *AssetTestSuite) TestName() {
 			arch: "amd64",
 			os:   "linux",
 			name: "cloudflared-linux-amd64",
-		},
-		{
-			tool: &Tool{
-				Name:    DockerCompose,
-				Version: "v2.1.1",
-			},
-			arch: "amd64",
-			os:   "linux",
-			name: "docker-compose-linux-x86_64",
 		},
 		{
 			tool: &Tool{
@@ -326,15 +302,6 @@ func (s *AssetTestSuite) TestWithinArchive() {
 			arch:          "amd64",
 			os:            "linux",
 			withinArchive: "cloudflared",
-		},
-		{
-			tool: &Tool{
-				Name:    DockerCompose,
-				Version: "v2.1.1",
-			},
-			arch:          "amd64",
-			os:            "linux",
-			withinArchive: "docker-compose",
 		},
 		{
 			tool: &Tool{

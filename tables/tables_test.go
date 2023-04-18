@@ -35,10 +35,6 @@ func (s *TablesTestSuite) TestToolsNames() {
 			remote: tools.Cloudflared,
 		},
 		{
-			local:  tables.DockerCompose,
-			remote: tools.DockerCompose,
-		},
-		{
 			local:  tables.Flyctl,
 			remote: tools.Flyctl,
 		},

@@ -128,38 +128,6 @@ func (s *RuntimeTestSuite) TestCloudflaredRuntime() {
 	}
 }
 
-func (s *RuntimeTestSuite) TestDockerComposeRuntime() {
-	table := []struct {
-		arch    string
-		os      string
-		archOut string
-		osOut   string
-	}{
-		{
-			arch:    "amd64",
-			os:      "linux",
-			archOut: "x86_64",
-			osOut:   "linux",
-		},
-		{
-			arch:    "arm",
-			os:      "linux",
-			archOut: "armv7",
-			osOut:   "linux",
-		},
-	}
-
-	for _, tt := range table {
-		t := &Tool{
-			Name: DockerCompose,
-		}
-		err := t.SetRuntime(tt.arch, tt.os)
-		s.Nil(err)
-		s.Equal(tt.archOut, t.Arch)
-		s.Equal(tt.osOut, t.OS)
-	}
-}
-
 func (s *RuntimeTestSuite) TestInvalidRuntime() {
 	t := &Tool{
 		Name: Bat,

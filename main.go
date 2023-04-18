@@ -101,14 +101,6 @@ func main() {
 		},
 	}
 
-	dockerComposeCmd := &cobra.Command{
-		Use:   tools.DockerCompose,
-		Short: "Define and run multi-container applications with Docker",
-		Run: func(cmd *cobra.Command, args []string) {
-			run(tools.DockerCompose)
-		},
-	}
-
 	flyctlCmd := &cobra.Command{
 		Use:   tools.Flyctl,
 		Short: "Command line tools for fly.io services",
@@ -160,7 +152,6 @@ func main() {
 	rootCmd.AddCommand(batCmd)
 	rootCmd.AddCommand(bottomCmd)
 	rootCmd.AddCommand(cloudflaredCmd)
-	rootCmd.AddCommand(dockerComposeCmd)
 	rootCmd.AddCommand(flyctlCmd)
 	rootCmd.AddCommand(k9sCmd)
 	rootCmd.AddCommand(upxCmd)

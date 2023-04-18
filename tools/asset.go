@@ -25,11 +25,6 @@ func (t *Tool) AssetCloudflared() {
 	}
 }
 
-func (t *Tool) AssetDockerCompose() {
-	t.Asset.Name = fmt.Sprintf("docker-compose-%v-%v", t.OS, t.Arch)
-	t.Asset.Destination = path.Join("/usr/libexec/docker/cli-plugins/", t.Name)
-	t.Asset.IsBinary = true
-}
 func (t *Tool) AssetFlyctl() {
 	t.Asset.Name = fmt.Sprintf("flyctl_%v_%v_%v.tar.gz", t.TrimVersion(), t.OS, t.Arch)
 }
