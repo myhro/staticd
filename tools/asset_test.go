@@ -251,15 +251,6 @@ func (s *AssetTestSuite) TestName() {
 			os:   "linux",
 			name: "yj-linux",
 		},
-		{
-			tool: &Tool{
-				Name:    Yj,
-				Version: "v5.0.0",
-			},
-			arch: "arm",
-			os:   "linux",
-			name: "yj-linux-arm-v7",
-		},
 	}
 
 	for _, tt := range table {

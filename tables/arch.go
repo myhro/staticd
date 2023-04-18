@@ -7,7 +7,6 @@ var Arch = map[string]map[string]map[string]string{
 		},
 		"linux": {
 			"amd64": "x86_64",
-			"arm":   "arm",
 			"arm64": "aarch64",
 		},
 	},
@@ -17,7 +16,6 @@ var Arch = map[string]map[string]map[string]string{
 		},
 		"linux": {
 			"amd64": "x86_64",
-			"arm":   "armv7",
 			"arm64": "aarch64",
 		},
 	},
@@ -27,7 +25,6 @@ var Arch = map[string]map[string]map[string]string{
 		},
 		"linux": {
 			"amd64": "amd64",
-			"arm":   "arm",
 			"arm64": "arm64",
 		},
 	},
@@ -47,14 +44,12 @@ var Arch = map[string]map[string]map[string]string{
 		},
 		"linux": {
 			"amd64": "x86_64",
-			"arm":   "arm",
 			"arm64": "arm64",
 		},
 	},
 	UPX: {
 		"linux": {
 			"amd64": "amd64",
-			"arm":   "arm",
 			"arm64": "arm64",
 		},
 	},
@@ -64,7 +59,6 @@ var Arch = map[string]map[string]map[string]string{
 		},
 		"linux": {
 			"amd64": "x86_64",
-			"arm":   "arm",
 			"arm64": "aarch64",
 		},
 	},
@@ -74,7 +68,6 @@ var Arch = map[string]map[string]map[string]string{
 		},
 		"linux": {
 			"amd64": "",
-			"arm":   "arm-v7",
 			"arm64": "arm64",
 		},
 	},
