@@ -7,7 +7,6 @@ var OS = map[string]map[string]map[string]string{
 		},
 		"linux": {
 			"amd64": "unknown-linux-gnu",
-			"arm":   "unknown-linux-gnueabihf",
 			"arm64": "unknown-linux-gnu",
 		},
 	},
@@ -17,7 +16,6 @@ var OS = map[string]map[string]map[string]string{
 		},
 		"linux": {
 			"amd64": "unknown-linux-gnu",
-			"arm":   "unknown-linux-gnueabihf",
 			"arm64": "unknown-linux-gnu",
 		},
 	},
@@ -27,7 +25,6 @@ var OS = map[string]map[string]map[string]string{
 		},
 		"linux": {
 			"amd64": "linux",
-			"arm":   "linux",
 			"arm64": "linux",
 		},
 	},
@@ -47,14 +44,12 @@ var OS = map[string]map[string]map[string]string{
 		},
 		"linux": {
 			"amd64": "Linux",
-			"arm":   "Linux",
 			"arm64": "Linux",
 		},
 	},
 	UPX: {
 		"linux": {
 			"amd64": "linux",
-			"arm":   "linux",
 			"arm64": "linux",
 		},
 	},
@@ -64,7 +59,6 @@ var OS = map[string]map[string]map[string]string{
 		},
 		"linux": {
 			"amd64": "unknown-linux-musl",
-			"arm":   "unknown-linux-gnueabihf",
 			"arm64": "unknown-linux-musl",
 		},
 	},
@@ -74,7 +68,6 @@ var OS = map[string]map[string]map[string]string{
 		},
 		"linux": {
 			"amd64": "linux",
-			"arm":   "linux",
 			"arm64": "linux",
 		},
 	},

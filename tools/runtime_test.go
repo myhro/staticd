@@ -33,12 +33,6 @@ func (s *RuntimeTestSuite) TestBatRuntime() {
 			archOut: "x86_64",
 			osOut:   "apple-darwin",
 		},
-		{
-			arch:    "arm",
-			os:      "linux",
-			archOut: "arm",
-			osOut:   "unknown-linux-gnueabihf",
-		},
 	}
 
 	for _, tt := range table {
@@ -70,12 +64,6 @@ func (s *RuntimeTestSuite) TestBottomRuntime() {
 			os:      "darwin",
 			archOut: "x86_64",
 			osOut:   "apple-darwin",
-		},
-		{
-			arch:    "arm",
-			os:      "linux",
-			archOut: "armv7",
-			osOut:   "unknown-linux-gnueabihf",
 		},
 	}
 
@@ -109,12 +97,6 @@ func (s *RuntimeTestSuite) TestCloudflaredRuntime() {
 			archOut: "amd64",
 			osOut:   "darwin",
 		},
-		{
-			arch:    "arm",
-			os:      "linux",
-			archOut: "arm",
-			osOut:   "linux",
-		},
 	}
 
 	for _, tt := range table {
@@ -132,7 +114,7 @@ func (s *RuntimeTestSuite) TestInvalidRuntime() {
 	t := &Tool{
 		Name: Bat,
 	}
-	err := t.SetRuntime("arm", "darwin")
+	err := t.SetRuntime("riscv", "darwin")
 	s.Error(err)
 }
 
@@ -199,12 +181,6 @@ func (s *RuntimeTestSuite) TestK9sRuntime() {
 			archOut: "x86_64",
 			osOut:   "Darwin",
 		},
-		{
-			arch:    "arm",
-			os:      "linux",
-			archOut: "arm",
-			osOut:   "Linux",
-		},
 	}
 
 	for _, tt := range table {
@@ -236,12 +212,6 @@ func (s *RuntimeTestSuite) TestXhRuntime() {
 			os:      "darwin",
 			archOut: "x86_64",
 			osOut:   "apple-darwin",
-		},
-		{
-			arch:    "arm",
-			os:      "linux",
-			archOut: "arm",
-			osOut:   "unknown-linux-gnueabihf",
 		},
 	}
 

@@ -14,8 +14,6 @@ jobs:
             os: darwin
           - arch: amd64
             os: linux
-          - arch: arm
-            os: linux
           - arch: arm64
             os: linux
     steps:
@@ -55,7 +53,6 @@ jobs:
           files: |
             dist/staticd-darwin-amd64
             dist/staticd-linux-amd64
-            dist/staticd-linux-arm
             dist/staticd-linux-arm64
           prerelease: true
       - uses: softprops/action-gh-release@v1
@@ -64,5 +61,4 @@ jobs:
           files: |
             dist/staticd-darwin-amd64
             dist/staticd-linux-amd64
-            dist/staticd-linux-arm
             dist/staticd-linux-arm64
