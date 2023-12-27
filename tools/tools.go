@@ -37,7 +37,16 @@ type Tool struct {
 	Name    string
 	OS      string
 	URL     string
+	User    User
 	Version string
+}
+
+func (t *Tool) BaseDir() string {
+	if t.User.IsRoot() {
+		return "/usr/local/bin/"
+	}
+
+	return path.Join(t.User.HomeDir(), ".local", "bin")
 }
 
 func (t *Tool) Download() error {
@@ -128,7 +137,7 @@ func (t *Tool) GetVersion() error {
 }
 
 func (t *Tool) SetAsset() error {
-	t.Asset.Destination = path.Join("/usr/local/bin/", t.Name)
+	t.Asset.Destination = path.Join(t.BaseDir(), t.Name)
 	t.Asset.WithinArchive = t.Name
 
 	switch t.Name {

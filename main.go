@@ -22,6 +22,7 @@ func exit(msg string) {
 func run(name string) {
 	tool := &tools.Tool{
 		Name: name,
+		User: &tools.UserOS{},
 	}
 
 	err := tool.SetURL()

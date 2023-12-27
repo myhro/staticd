@@ -16,325 +16,283 @@ func TestAssetTestSuite(t *testing.T) {
 
 func (s *AssetTestSuite) TestDestination() {
 	table := []struct {
-		tool *Tool
+		name string
 		dest string
 	}{
 		{
-			tool: &Tool{
-				Name: Bat,
-			},
+			name: Bat,
 			dest: "/usr/local/bin/bat",
 		},
 		{
-			tool: &Tool{
-				Name: Bottom,
-			},
+			name: Bottom,
 			dest: "/usr/local/bin/btm",
 		},
 		{
-			tool: &Tool{
-				Name: Cloudflared,
-			},
+			name: Cloudflared,
 			dest: "/usr/local/bin/cloudflared",
 		},
 		{
-			tool: &Tool{
-				Name: Flyctl,
-			},
+			name: Flyctl,
 			dest: "/usr/local/bin/flyctl",
 		},
 		{
-			tool: &Tool{
-				Name: K9s,
-			},
+			name: K9s,
 			dest: "/usr/local/bin/k9s",
 		},
 		{
-			tool: &Tool{
-				Name: UPX,
-			},
+			name: UPX,
 			dest: "/usr/local/bin/upx",
 		},
 		{
-			tool: &Tool{
-				Name: Xh,
-			},
+			name: Xh,
 			dest: "/usr/local/bin/xh",
 		},
 		{
-			tool: &Tool{
-				Name: Yj,
-			},
+			name: Yj,
 			dest: "/usr/local/bin/yj",
 		},
 	}
 
 	for _, tt := range table {
-		tt.tool.SetAsset()
-		s.Equal(tt.dest, tt.tool.Asset.Destination)
+		tool := &Tool{
+			User: &UserMock{},
+		}
+		tool.Name = tt.name
+		tool.SetAsset()
+		s.Equal(tt.dest, tool.Asset.Destination)
 	}
 }
 
 func (s *AssetTestSuite) TestIsBinary() {
 	table := []struct {
-		tool   *Tool
-		arch   string
-		os     string
-		binary bool
+		name    string
+		arch    string
+		os      string
+		version string
+		binary  bool
 	}{
 		{
-			tool: &Tool{
-				Name:    Bat,
-				Version: "v0.18.3",
-			},
-			arch:   "amd64",
-			os:     "linux",
-			binary: false,
+			name:    Bat,
+			arch:    "amd64",
+			os:      "linux",
+			version: "v0.18.3",
+			binary:  false,
 		},
 		{
-			tool: &Tool{
-				Name:    Bottom,
-				Version: "0.6.4",
-			},
-			arch:   "amd64",
-			os:     "linux",
-			binary: false,
+			name:    Bottom,
+			arch:    "amd64",
+			os:      "linux",
+			version: "0.6.4",
+			binary:  false,
 		},
 		{
-			tool: &Tool{
-				Name:    Cloudflared,
-				Version: "2021.11.0",
-			},
-			arch:   "amd64",
-			os:     "darwin",
-			binary: false,
+			name:    Cloudflared,
+			arch:    "amd64",
+			os:      "darwin",
+			version: "2021.11.0",
+			binary:  false,
 		},
 		{
-			tool: &Tool{
-				Name:    Cloudflared,
-				Version: "2021.11.0",
-			},
-			arch:   "amd64",
-			os:     "linux",
-			binary: true,
+			name:    Cloudflared,
+			arch:    "amd64",
+			os:      "linux",
+			version: "2021.11.0",
+			binary:  true,
 		},
 		{
-			tool: &Tool{
-				Name:    Flyctl,
-				Version: "v0.0.450",
-			},
-			arch:   "amd64",
-			os:     "linux",
-			binary: false,
+			name:    Flyctl,
+			arch:    "amd64",
+			os:      "linux",
+			version: "v0.0.450",
+			binary:  false,
 		},
 		{
-			tool: &Tool{
-				Name:    K9s,
-				Version: "v0.25.4",
-			},
-			arch:   "amd64",
-			os:     "linux",
-			binary: false,
+			name:    K9s,
+			arch:    "amd64",
+			os:      "linux",
+			version: "v0.25.4",
+			binary:  false,
 		},
 		{
-			tool: &Tool{
-				Name:    UPX,
-				Version: "v3.96",
-			},
-			arch:   "amd64",
-			os:     "linux",
-			binary: false,
+			name:    UPX,
+			arch:    "amd64",
+			os:      "linux",
+			version: "v3.96",
+			binary:  false,
 		},
 		{
-			tool: &Tool{
-				Name:    Xh,
-				Version: "v0.14.0",
-			},
-			arch:   "amd64",
-			os:     "linux",
-			binary: false,
+			name:    Xh,
+			arch:    "amd64",
+			os:      "linux",
+			version: "v0.14.0",
+			binary:  false,
 		},
 		{
-			tool: &Tool{
-				Name:    Yj,
-				Version: "v5.0.0",
-			},
-			arch:   "amd64",
-			os:     "linux",
-			binary: true,
+			name:    Yj,
+			arch:    "amd64",
+			os:      "linux",
+			version: "v5.0.0",
+			binary:  true,
 		},
 	}
 
 	for _, tt := range table {
-		tt.tool.SetRuntime(tt.arch, tt.os)
-		tt.tool.SetAsset()
-		s.Equal(tt.binary, tt.tool.Asset.IsBinary, "", tt.tool.Name, tt.arch, tt.os)
+		tool := &Tool{
+			User: &UserMock{},
+		}
+		tool.Name = tt.name
+		tool.Version = tt.version
+		tool.SetRuntime(tt.arch, tt.os)
+		tool.SetAsset()
+		s.Equal(tt.binary, tool.Asset.IsBinary, "", tool.Name, tt.arch, tt.os)
 	}
 }
 
 func (s *AssetTestSuite) TestName() {
 	table := []struct {
-		tool *Tool
-		arch string
-		os   string
-		name string
+		name     string
+		arch     string
+		os       string
+		version  string
+		filename string
 	}{
 		{
-			tool: &Tool{
-				Name:    Bat,
-				Version: "v0.18.3",
-			},
-			arch: "amd64",
-			os:   "linux",
-			name: "bat-v0.18.3-x86_64-unknown-linux-gnu.tar.gz",
+			name:     Bat,
+			arch:     "amd64",
+			os:       "linux",
+			version:  "v0.18.3",
+			filename: "bat-v0.18.3-x86_64-unknown-linux-gnu.tar.gz",
 		},
 		{
-			tool: &Tool{
-				Name:    Bottom,
-				Version: "0.6.4",
-			},
-			arch: "amd64",
-			os:   "linux",
-			name: "bottom_x86_64-unknown-linux-gnu.tar.gz",
+			name:     Bottom,
+			arch:     "amd64",
+			os:       "linux",
+			version:  "0.6.4",
+			filename: "bottom_x86_64-unknown-linux-gnu.tar.gz",
 		},
 		{
-			tool: &Tool{
-				Name:    Cloudflared,
-				Version: "2021.11.0",
-			},
-			arch: "amd64",
-			os:   "linux",
-			name: "cloudflared-linux-amd64",
+			name:     Cloudflared,
+			arch:     "amd64",
+			os:       "linux",
+			version:  "2021.11.0",
+			filename: "cloudflared-linux-amd64",
 		},
 		{
-			tool: &Tool{
-				Name:    Flyctl,
-				Version: "v0.0.450",
-			},
-			arch: "amd64",
-			os:   "linux",
-			name: "flyctl_0.0.450_Linux_x86_64.tar.gz",
+			name:     Flyctl,
+			arch:     "amd64",
+			os:       "linux",
+			version:  "v0.0.450",
+			filename: "flyctl_0.0.450_Linux_x86_64.tar.gz",
 		},
 		{
-			tool: &Tool{
-				Name:    K9s,
-				Version: "v0.25.4",
-			},
-			arch: "amd64",
-			os:   "linux",
-			name: "k9s_Linux_x86_64.tar.gz",
+			name:     K9s,
+			arch:     "amd64",
+			os:       "linux",
+			version:  "v0.25.4",
+			filename: "k9s_Linux_x86_64.tar.gz",
 		},
 		{
-			tool: &Tool{
-				Name:    UPX,
-				Version: "v3.96",
-			},
-			arch: "amd64",
-			os:   "linux",
-			name: "upx-3.96-amd64_linux.tar.xz",
+			name:     UPX,
+			arch:     "amd64",
+			os:       "linux",
+			version:  "v3.96",
+			filename: "upx-3.96-amd64_linux.tar.xz",
 		},
 		{
-			tool: &Tool{
-				Name:    Xh,
-				Version: "v0.14.0",
-			},
-			arch: "amd64",
-			os:   "linux",
-			name: "xh-v0.14.0-x86_64-unknown-linux-musl.tar.gz",
+			name:     Xh,
+			arch:     "amd64",
+			os:       "linux",
+			version:  "v0.14.0",
+			filename: "xh-v0.14.0-x86_64-unknown-linux-musl.tar.gz",
 		},
 		{
-			tool: &Tool{
-				Name:    Yj,
-				Version: "v5.0.0",
-			},
-			arch: "amd64",
-			os:   "linux",
-			name: "yj-linux",
+			name:     Yj,
+			version:  "v5.0.0",
+			arch:     "amd64",
+			os:       "linux",
+			filename: "yj-linux",
 		},
 	}
 
 	for _, tt := range table {
-		tt.tool.SetRuntime(tt.arch, tt.os)
-		tt.tool.SetAsset()
-		s.Equal(tt.name, tt.tool.Asset.Name)
+		tool := &Tool{
+			User: &UserMock{},
+		}
+		tool.Name = tt.name
+		tool.Version = tt.version
+		tool.SetRuntime(tt.arch, tt.os)
+		tool.SetAsset()
+		s.Equal(tt.filename, tool.Asset.Name)
 	}
 }
 
 func (s *AssetTestSuite) TestWithinArchive() {
 	table := []struct {
-		tool          *Tool
+		name          string
 		arch          string
 		os            string
+		version       string
 		withinArchive string
 	}{
 		{
-			tool: &Tool{
-				Name:    Bat,
-				Version: "v0.18.3",
-			},
+			name:          Bat,
 			arch:          "amd64",
 			os:            "linux",
+			version:       "v0.18.3",
 			withinArchive: "bat-v0.18.3-x86_64-unknown-linux-gnu/bat",
 		},
 		{
-			tool: &Tool{
-				Name:    Bottom,
-				Version: "0.6.4",
-			},
+			name:          Bottom,
 			arch:          "amd64",
 			os:            "linux",
+			version:       "0.6.4",
 			withinArchive: "btm",
 		},
 		{
-			tool: &Tool{
-				Name:    Cloudflared,
-				Version: "2021.11.0",
-			},
+			name:          Cloudflared,
 			arch:          "amd64",
 			os:            "linux",
+			version:       "2021.11.0",
 			withinArchive: "cloudflared",
 		},
 		{
-			tool: &Tool{
-				Name:    Flyctl,
-				Version: "v0.0.450",
-			},
+			name:          Flyctl,
 			arch:          "amd64",
 			os:            "linux",
+			version:       "v0.0.450",
 			withinArchive: "flyctl",
 		},
 		{
-			tool: &Tool{
-				Name:    K9s,
-				Version: "v0.25.4",
-			},
+			name:          K9s,
 			arch:          "amd64",
 			os:            "linux",
+			version:       "v0.25.4",
 			withinArchive: "k9s",
 		},
 		{
-			tool: &Tool{
-				Name:    UPX,
-				Version: "v3.96",
-			},
+			name:          UPX,
 			arch:          "amd64",
 			os:            "linux",
+			version:       "v3.96",
 			withinArchive: "upx-3.96-amd64_linux/upx",
 		},
 		{
-			tool: &Tool{
-				Name:    Xh,
-				Version: "v0.14.0",
-			},
+			name:          Xh,
 			arch:          "amd64",
 			os:            "linux",
+			version:       "v0.14.0",
 			withinArchive: "xh-v0.14.0-x86_64-unknown-linux-musl/xh",
 		},
 	}
 
 	for _, tt := range table {
-		tt.tool.SetRuntime(tt.arch, tt.os)
-		tt.tool.SetAsset()
-		s.Equal(tt.withinArchive, tt.tool.Asset.WithinArchive)
+		tool := &Tool{
+			User: &UserMock{},
+		}
+		tool.Name = tt.name
+		tool.Version = tt.version
+		tool.SetRuntime(tt.arch, tt.os)
+		tool.SetAsset()
+		s.Equal(tt.withinArchive, tool.Asset.WithinArchive)
 	}
 }
