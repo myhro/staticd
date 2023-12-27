@@ -163,6 +163,10 @@ func (t *Tool) SetRuntime(arch string, os string) error {
 	t.OS, osOk = tables.OS[t.Name][os][arch]
 
 	if !archOk || !osOk {
+		if arch == "arm64" && os == "darwin" {
+			return t.SetRuntime("amd64", os)
+		}
+
 		return fmt.Errorf("no candidate for %v on %v/%v", t.Name, os, arch)
 	}
 
