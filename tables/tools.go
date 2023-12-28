@@ -6,6 +6,7 @@ const (
 	Cloudflared = "cloudflared"
 	Flyctl      = "flyctl"
 	K9s         = "k9s"
+	Kubectx     = "kubectx"
 	UPX         = "upx"
 	Xh          = "xh"
 	Yj          = "yj"

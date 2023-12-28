@@ -47,6 +47,16 @@ var Arch = map[string]map[string]map[string]string{
 			"arm64": "arm64",
 		},
 	},
+	Kubectx: {
+		"darwin": {
+			"amd64": "x86_64",
+			"arm64": "arm64",
+		},
+		"linux": {
+			"amd64": "x86_64",
+			"arm64": "arm64",
+		},
+	},
 	UPX: {
 		"linux": {
 			"amd64": "amd64",
