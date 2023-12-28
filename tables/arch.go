@@ -40,10 +40,10 @@ var Arch = map[string]map[string]map[string]string{
 	},
 	K9s: {
 		"darwin": {
-			"amd64": "x86_64",
+			"amd64": "amd64",
 		},
 		"linux": {
-			"amd64": "x86_64",
+			"amd64": "amd64",
 			"arm64": "arm64",
 		},
 	},

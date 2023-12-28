@@ -172,13 +172,13 @@ func (s *RuntimeTestSuite) TestK9sRuntime() {
 		{
 			arch:    "amd64",
 			os:      "linux",
-			archOut: "x86_64",
+			archOut: "amd64",
 			osOut:   "Linux",
 		},
 		{
 			arch:    "amd64",
 			os:      "darwin",
-			archOut: "x86_64",
+			archOut: "amd64",
 			osOut:   "Darwin",
 		},
 	}

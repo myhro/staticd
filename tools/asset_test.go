@@ -188,8 +188,8 @@ func (s *AssetTestSuite) TestName() {
 			name:     K9s,
 			arch:     "amd64",
 			os:       "linux",
-			version:  "v0.25.4",
-			filename: "k9s_Linux_x86_64.tar.gz",
+			version:  "v0.30.4",
+			filename: "k9s_Linux_amd64.tar.gz",
 		},
 		{
 			name:     UPX,
