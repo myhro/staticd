@@ -56,6 +56,10 @@ func (t *Tool) Download() error {
 	}
 	defer resp.Body.Close()
 
+	if resp.StatusCode != http.StatusOK {
+		return fmt.Errorf("couldn't download %v: %v", t.Asset.Name, resp.Status)
+	}
+
 	if t.Asset.IsBinary {
 		err := saveBinary(resp.Body, t.Asset.Destination)
 		if err != nil {
