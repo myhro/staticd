@@ -118,6 +118,14 @@ func main() {
 		},
 	}
 
+	kubectxCmd := &cobra.Command{
+		Use:   tools.Kubectx,
+		Short: "Faster way to switch between clusters in kubectl",
+		Run: func(cmd *cobra.Command, args []string) {
+			run(tools.Kubectx)
+		},
+	}
+
 	upxCmd := &cobra.Command{
 		Use:   tools.UPX,
 		Short: "The Ultimate Packer for eXecutables",
@@ -155,6 +163,7 @@ func main() {
 	rootCmd.AddCommand(cloudflaredCmd)
 	rootCmd.AddCommand(flyctlCmd)
 	rootCmd.AddCommand(k9sCmd)
+	rootCmd.AddCommand(kubectxCmd)
 	rootCmd.AddCommand(upxCmd)
 	rootCmd.AddCommand(xhCmd)
 	rootCmd.AddCommand(yjCmd)

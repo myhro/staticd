@@ -33,6 +33,10 @@ func (t *Tool) AssetK9s() {
 	t.Asset.Name = fmt.Sprintf("k9s_%v_%v.tar.gz", t.OS, t.Arch)
 }
 
+func (t *Tool) AssetKubectx() {
+	t.Asset.Name = fmt.Sprintf("kubectx_%v_%v_%v.tar.gz", t.Version, t.OS, t.Arch)
+}
+
 func (t *Tool) AssetUPX() {
 	baseName := fmt.Sprintf("upx-%v-%v_%v", t.TrimVersion(), t.Arch, t.OS)
 	t.Asset.Name = baseName + ".tar.xz"

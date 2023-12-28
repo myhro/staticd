@@ -47,6 +47,16 @@ var OS = map[string]map[string]map[string]string{
 			"arm64": "Linux",
 		},
 	},
+	Kubectx: {
+		"darwin": {
+			"amd64": "darwin",
+			"arm64": "darwin",
+		},
+		"linux": {
+			"amd64": "linux",
+			"arm64": "linux",
+		},
+	},
 	UPX: {
 		"linux": {
 			"amd64": "linux",

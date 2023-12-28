@@ -19,6 +19,7 @@ const (
 	Cloudflared = "cloudflared"
 	Flyctl      = "flyctl"
 	K9s         = "k9s"
+	Kubectx     = "kubectx"
 	UPX         = "upx"
 	Xh          = "xh"
 	Yj          = "yj"
@@ -140,6 +141,7 @@ func (t *Tool) GetVersion() error {
 	return nil
 }
 
+//nolint:cyclop
 func (t *Tool) SetAsset() error {
 	t.Asset.Destination = path.Join(t.BaseDir(), t.Name)
 	t.Asset.WithinArchive = t.Name
@@ -155,6 +157,8 @@ func (t *Tool) SetAsset() error {
 		t.AssetFlyctl()
 	case K9s:
 		t.AssetK9s()
+	case Kubectx:
+		t.AssetKubectx()
 	case UPX:
 		t.AssetUPX()
 	case Xh:

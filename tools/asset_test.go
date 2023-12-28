@@ -192,6 +192,13 @@ func (s *AssetTestSuite) TestName() {
 			filename: "k9s_Linux_amd64.tar.gz",
 		},
 		{
+			name:     Kubectx,
+			arch:     "arm64",
+			os:       "darwin",
+			version:  "v0.9.5",
+			filename: "kubectx_v0.9.5_darwin_arm64.tar.gz",
+		},
+		{
 			name:     UPX,
 			arch:     "amd64",
 			os:       "linux",
