@@ -1,0 +1,180 @@
+//nolint:dupl
+package tools
+
+var Arch = map[string]map[string]map[string]string{
+	Bat: {
+		"darwin": {
+			"amd64": "x86_64",
+		},
+		"linux": {
+			"amd64": "x86_64",
+			"arm64": "aarch64",
+		},
+	},
+	Bottom: {
+		"darwin": {
+			"amd64": "x86_64",
+		},
+		"linux": {
+			"amd64": "x86_64",
+			"arm64": "aarch64",
+		},
+	},
+	Cloudflared: {
+		"darwin": {
+			"amd64": "amd64",
+		},
+		"linux": {
+			"amd64": "amd64",
+			"arm64": "arm64",
+		},
+	},
+	Flyctl: {
+		"darwin": {
+			"amd64": "x86_64",
+			"arm64": "arm64",
+		},
+		"linux": {
+			"amd64": "x86_64",
+			"arm64": "arm64",
+		},
+	},
+	K9s: {
+		"darwin": {
+			"amd64": "amd64",
+		},
+		"linux": {
+			"amd64": "amd64",
+			"arm64": "arm64",
+		},
+	},
+	Kubectx: {
+		"darwin": {
+			"amd64": "x86_64",
+			"arm64": "arm64",
+		},
+		"linux": {
+			"amd64": "x86_64",
+			"arm64": "arm64",
+		},
+	},
+	UPX: {
+		"linux": {
+			"amd64": "amd64",
+			"arm64": "arm64",
+		},
+	},
+	Xh: {
+		"darwin": {
+			"amd64": "x86_64",
+		},
+		"linux": {
+			"amd64": "x86_64",
+			"arm64": "aarch64",
+		},
+	},
+	Yj: {
+		"darwin": {
+			"amd64": "",
+		},
+		"linux": {
+			"amd64": "",
+			"arm64": "arm64",
+		},
+	},
+}
+
+var OS = map[string]map[string]map[string]string{
+	Bat: {
+		"darwin": {
+			"amd64": "apple-darwin",
+		},
+		"linux": {
+			"amd64": "unknown-linux-gnu",
+			"arm64": "unknown-linux-gnu",
+		},
+	},
+	Bottom: {
+		"darwin": {
+			"amd64": "apple-darwin",
+		},
+		"linux": {
+			"amd64": "unknown-linux-gnu",
+			"arm64": "unknown-linux-gnu",
+		},
+	},
+	Cloudflared: {
+		"darwin": {
+			"amd64": "darwin",
+		},
+		"linux": {
+			"amd64": "linux",
+			"arm64": "linux",
+		},
+	},
+	Flyctl: {
+		"darwin": {
+			"amd64": "macOS",
+			"arm64": "macOS",
+		},
+		"linux": {
+			"amd64": "Linux",
+			"arm64": "Linux",
+		},
+	},
+	K9s: {
+		"darwin": {
+			"amd64": "Darwin",
+		},
+		"linux": {
+			"amd64": "Linux",
+			"arm64": "Linux",
+		},
+	},
+	Kubectx: {
+		"darwin": {
+			"amd64": "darwin",
+			"arm64": "darwin",
+		},
+		"linux": {
+			"amd64": "linux",
+			"arm64": "linux",
+		},
+	},
+	UPX: {
+		"linux": {
+			"amd64": "linux",
+			"arm64": "linux",
+		},
+	},
+	Xh: {
+		"darwin": {
+			"amd64": "apple-darwin",
+		},
+		"linux": {
+			"amd64": "unknown-linux-musl",
+			"arm64": "unknown-linux-musl",
+		},
+	},
+	Yj: {
+		"darwin": {
+			"amd64": "macos",
+		},
+		"linux": {
+			"amd64": "linux",
+			"arm64": "linux",
+		},
+	},
+}
+
+var URL = map[string]string{
+	Bat:         "https://github.com/sharkdp/bat/releases",
+	Bottom:      "https://github.com/ClementTsang/bottom/releases",
+	Cloudflared: "https://github.com/cloudflare/cloudflared/releases",
+	Flyctl:      "https://github.com/superfly/flyctl/releases",
+	K9s:         "https://github.com/derailed/k9s/releases",
+	Kubectx:     "https://github.com/ahmetb/kubectx/releases",
+	UPX:         "https://github.com/upx/upx/releases",
+	Xh:          "https://github.com/ducaale/xh/releases",
+	Yj:          "https://github.com/sclevine/yj/releases",
+}

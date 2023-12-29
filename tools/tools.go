@@ -9,8 +9,6 @@ import (
 	"os"
 	"path"
 	"strings"
-
-	"github.com/myhro/staticd/tables"
 )
 
 const (
@@ -176,8 +174,8 @@ func (t *Tool) SetAsset() error {
 
 func (t *Tool) SetRuntime(arch string, os string) error {
 	var archOk, osOk bool
-	t.Arch, archOk = tables.Arch[t.Name][os][arch]
-	t.OS, osOk = tables.OS[t.Name][os][arch]
+	t.Arch, archOk = Arch[t.Name][os][arch]
+	t.OS, osOk = OS[t.Name][os][arch]
 
 	if !archOk || !osOk {
 		if arch == "arm64" && os == "darwin" {
@@ -191,7 +189,7 @@ func (t *Tool) SetRuntime(arch string, os string) error {
 }
 
 func (t *Tool) SetURL() error {
-	t.URL = tables.URL[t.Name]
+	t.URL = URL[t.Name]
 	if t.URL == "" {
 		return fmt.Errorf("no url defined for: %v", t.Name)
 	}
