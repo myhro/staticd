@@ -3,7 +3,7 @@ VERSION ?= $(shell ./scripts/version.sh)
 
 build:
 	mkdir -p dist/
-	go build -ldflags="-s -w -X main.version=$(VERSION)" -o dist/$(BINARY)
+	CGO_ENABLED=0 go build -ldflags="-s -w -X main.version=$(VERSION)" -o dist/$(BINARY)
 
 clean:
 	rm -rf dist/
