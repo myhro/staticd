@@ -51,9 +51,5 @@ func (t *Tool) AssetXh() {
 
 func (t *Tool) AssetYj() {
 	t.Asset.IsBinary = true
-	t.Asset.Name = fmt.Sprintf("yj-%v", t.OS)
-
-	if t.Arch != "" {
-		t.Asset.Name += fmt.Sprintf("-%v", t.Arch)
-	}
+	t.Asset.Name = fmt.Sprintf("yj-%v-%v", t.OS, t.Arch)
 }

@@ -217,7 +217,7 @@ func (s *AssetTestSuite) TestName() {
 			version:  "v5.0.0",
 			arch:     "amd64",
 			os:       "linux",
-			filename: "yj-linux",
+			filename: "yj-linux-amd64",
 		},
 	}
 
