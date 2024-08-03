@@ -14,6 +14,7 @@ var Arch = map[string]map[string]map[string]string{
 	Bottom: {
 		"darwin": {
 			"amd64": "x86_64",
+			"arm64": "aarch64",
 		},
 		"linux": {
 			"amd64": "x86_64",
@@ -42,6 +43,7 @@ var Arch = map[string]map[string]map[string]string{
 	K9s: {
 		"darwin": {
 			"amd64": "amd64",
+			"arm64": "arm64",
 		},
 		"linux": {
 			"amd64": "amd64",
@@ -67,6 +69,7 @@ var Arch = map[string]map[string]map[string]string{
 	Xh: {
 		"darwin": {
 			"amd64": "x86_64",
+			"arm64": "aarch64",
 		},
 		"linux": {
 			"amd64": "x86_64",
@@ -76,6 +79,7 @@ var Arch = map[string]map[string]map[string]string{
 	Yj: {
 		"darwin": {
 			"amd64": "amd64",
+			"arm64": "arm64",
 		},
 		"linux": {
 			"amd64": "amd64",
@@ -97,6 +101,7 @@ var OS = map[string]map[string]map[string]string{
 	Bottom: {
 		"darwin": {
 			"amd64": "apple-darwin",
+			"arm64": "apple-darwin",
 		},
 		"linux": {
 			"amd64": "unknown-linux-gnu",
@@ -125,6 +130,7 @@ var OS = map[string]map[string]map[string]string{
 	K9s: {
 		"darwin": {
 			"amd64": "Darwin",
+			"arm64": "Darwin",
 		},
 		"linux": {
 			"amd64": "Linux",
@@ -150,6 +156,7 @@ var OS = map[string]map[string]map[string]string{
 	Xh: {
 		"darwin": {
 			"amd64": "apple-darwin",
+			"arm64": "apple-darwin",
 		},
 		"linux": {
 			"amd64": "unknown-linux-musl",
@@ -159,6 +166,7 @@ var OS = map[string]map[string]map[string]string{
 	Yj: {
 		"darwin": {
 			"amd64": "macos",
+			"arm64": "macos",
 		},
 		"linux": {
 			"amd64": "linux",
