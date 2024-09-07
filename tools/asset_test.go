@@ -40,6 +40,10 @@ func (s *AssetTestSuite) TestDestination() {
 			dest: "/usr/local/bin/k9s",
 		},
 		{
+			name: Ripgrep,
+			dest: "/usr/local/bin/rg",
+		},
+		{
 			name: UPX,
 			dest: "/usr/local/bin/upx",
 		},
@@ -111,6 +115,13 @@ func (s *AssetTestSuite) TestIsBinary() {
 			arch:    "amd64",
 			os:      "linux",
 			version: "v0.25.4",
+			binary:  false,
+		},
+		{
+			name:    Ripgrep,
+			arch:    "amd64",
+			os:      "linux",
+			version: "14.1.0",
 			binary:  false,
 		},
 		{
@@ -199,6 +210,13 @@ func (s *AssetTestSuite) TestName() {
 			filename: "kubectx_v0.9.5_darwin_arm64.tar.gz",
 		},
 		{
+			name:     Ripgrep,
+			arch:     "amd64",
+			os:       "linux",
+			version:  "14.1.0",
+			filename: "ripgrep-14.1.0-x86_64-unknown-linux-musl.tar.gz",
+		},
+		{
 			name:     UPX,
 			arch:     "amd64",
 			os:       "linux",
@@ -275,6 +293,13 @@ func (s *AssetTestSuite) TestWithinArchive() {
 			os:            "linux",
 			version:       "v0.25.4",
 			withinArchive: "k9s",
+		},
+		{
+			name:          Ripgrep,
+			arch:          "amd64",
+			os:            "linux",
+			version:       "14.1.0",
+			withinArchive: "ripgrep-14.1.0-x86_64-unknown-linux-musl/rg",
 		},
 		{
 			name:          UPX,

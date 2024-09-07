@@ -60,6 +60,10 @@ func (s *ToolsTestSuite) TestSetURL() {
 				url:  "https://github.com/ahmetb/kubectx/releases",
 			},
 			{
+				name: Ripgrep,
+				url:  "https://github.com/BurntSushi/ripgrep/releases",
+			},
+			{
 				name: UPX,
 				url:  "https://github.com/upx/upx/releases",
 			},

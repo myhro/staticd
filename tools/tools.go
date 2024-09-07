@@ -18,6 +18,7 @@ const (
 	Flyctl      = "flyctl"
 	K9s         = "k9s"
 	Kubectx     = "kubectx"
+	Ripgrep     = "rg"
 	UPX         = "upx"
 	Xh          = "xh"
 	Yj          = "yj"
@@ -157,6 +158,8 @@ func (t *Tool) SetAsset() error {
 		t.AssetK9s()
 	case Kubectx:
 		t.AssetKubectx()
+	case Ripgrep:
+		t.AssetRipgrep()
 	case UPX:
 		t.AssetUPX()
 	case Xh:
