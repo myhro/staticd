@@ -126,6 +126,14 @@ func main() {
 		},
 	}
 
+	ripgrepCmd := &cobra.Command{
+		Use:   tools.Ripgrep,
+		Short: "Recursively searches directories for a regex pattern",
+		Run: func(cmd *cobra.Command, args []string) {
+			run(tools.Ripgrep)
+		},
+	}
+
 	upxCmd := &cobra.Command{
 		Use:   tools.UPX,
 		Short: "The Ultimate Packer for eXecutables",
@@ -164,6 +172,7 @@ func main() {
 	rootCmd.AddCommand(flyctlCmd)
 	rootCmd.AddCommand(k9sCmd)
 	rootCmd.AddCommand(kubectxCmd)
+	rootCmd.AddCommand(ripgrepCmd)
 	rootCmd.AddCommand(upxCmd)
 	rootCmd.AddCommand(xhCmd)
 	rootCmd.AddCommand(yjCmd)

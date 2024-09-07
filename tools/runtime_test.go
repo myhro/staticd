@@ -194,6 +194,50 @@ func (s *RuntimeTestSuite) TestK9sRuntime() {
 	}
 }
 
+func (s *RuntimeTestSuite) TestRipgrepRuntime() {
+	table := []struct {
+		arch    string
+		os      string
+		archOut string
+		osOut   string
+	}{
+		{
+			arch:    "amd64",
+			os:      "linux",
+			archOut: "x86_64",
+			osOut:   "unknown-linux-musl",
+		},
+		{
+			arch:    "amd64",
+			os:      "darwin",
+			archOut: "x86_64",
+			osOut:   "apple-darwin",
+		},
+		{
+			arch:    "arm64",
+			os:      "linux",
+			archOut: "aarch64",
+			osOut:   "unknown-linux-gnu",
+		},
+		{
+			arch:    "arm64",
+			os:      "darwin",
+			archOut: "aarch64",
+			osOut:   "apple-darwin",
+		},
+	}
+
+	for _, tt := range table {
+		t := &Tool{
+			Name: Ripgrep,
+		}
+		err := t.SetRuntime(tt.arch, tt.os)
+		s.Nil(err)
+		s.Equal(tt.archOut, t.Arch)
+		s.Equal(tt.osOut, t.OS)
+	}
+}
+
 func (s *RuntimeTestSuite) TestXhRuntime() {
 	table := []struct {
 		arch    string

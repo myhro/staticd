@@ -37,6 +37,12 @@ func (t *Tool) AssetKubectx() {
 	t.Asset.Name = fmt.Sprintf("kubectx_%v_%v_%v.tar.gz", t.Version, t.OS, t.Arch)
 }
 
+func (t *Tool) AssetRipgrep() {
+	baseName := fmt.Sprintf("ripgrep-%v-%v-%v", t.Version, t.Arch, t.OS)
+	t.Asset.Name = baseName + ".tar.gz"
+	t.Asset.WithinArchive = path.Join(baseName, t.Name)
+}
+
 func (t *Tool) AssetUPX() {
 	baseName := fmt.Sprintf("upx-%v-%v_%v", t.TrimVersion(), t.Arch, t.OS)
 	t.Asset.Name = baseName + ".tar.xz"
