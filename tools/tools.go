@@ -194,6 +194,8 @@ func (t *Tool) SetURL() error {
 		return fmt.Errorf("no url defined for: %v", t.Name)
 	}
 
+	t.URL += "/releases"
+
 	return nil
 }
 

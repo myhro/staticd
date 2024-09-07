@@ -176,13 +176,13 @@ var OS = map[string]map[string]map[string]string{
 }
 
 var URL = map[string]string{
-	Bat:         "https://github.com/sharkdp/bat/releases",
-	Bottom:      "https://github.com/ClementTsang/bottom/releases",
-	Cloudflared: "https://github.com/cloudflare/cloudflared/releases",
-	Flyctl:      "https://github.com/superfly/flyctl/releases",
-	K9s:         "https://github.com/derailed/k9s/releases",
-	Kubectx:     "https://github.com/ahmetb/kubectx/releases",
-	UPX:         "https://github.com/upx/upx/releases",
-	Xh:          "https://github.com/ducaale/xh/releases",
-	Yj:          "https://github.com/sclevine/yj/releases",
+	Bat:         "https://github.com/sharkdp/bat",
+	Bottom:      "https://github.com/ClementTsang/bottom",
+	Cloudflared: "https://github.com/cloudflare/cloudflared",
+	Flyctl:      "https://github.com/superfly/flyctl",
+	K9s:         "https://github.com/derailed/k9s",
+	Kubectx:     "https://github.com/ahmetb/kubectx",
+	UPX:         "https://github.com/upx/upx",
+	Xh:          "https://github.com/ducaale/xh",
+	Yj:          "https://github.com/sclevine/yj",
 }
