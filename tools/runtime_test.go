@@ -238,6 +238,50 @@ func (s *RuntimeTestSuite) TestRipgrepRuntime() {
 	}
 }
 
+func (s *RuntimeTestSuite) TestShellcheckRuntime() {
+	table := []struct {
+		arch    string
+		os      string
+		archOut string
+		osOut   string
+	}{
+		{
+			arch:    "amd64",
+			os:      "linux",
+			archOut: "x86_64",
+			osOut:   "linux",
+		},
+		{
+			arch:    "amd64",
+			os:      "darwin",
+			archOut: "x86_64",
+			osOut:   "darwin",
+		},
+		{
+			arch:    "arm64",
+			os:      "linux",
+			archOut: "aarch64",
+			osOut:   "linux",
+		},
+		{
+			arch:    "arm64",
+			os:      "darwin",
+			archOut: "aarch64",
+			osOut:   "darwin",
+		},
+	}
+
+	for _, tt := range table {
+		t := &Tool{
+			Name: Shellcheck,
+		}
+		err := t.SetRuntime(tt.arch, tt.os)
+		s.Nil(err)
+		s.Equal(tt.archOut, t.Arch)
+		s.Equal(tt.osOut, t.OS)
+	}
+}
+
 func (s *RuntimeTestSuite) TestXhRuntime() {
 	table := []struct {
 		arch    string

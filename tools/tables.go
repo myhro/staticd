@@ -69,6 +69,16 @@ var Arch = map[string]map[string]map[string]string{
 			"arm64": "aarch64",
 		},
 	},
+	Shellcheck: {
+		"darwin": {
+			"amd64": "x86_64",
+			"arm64": "aarch64",
+		},
+		"linux": {
+			"amd64": "x86_64",
+			"arm64": "aarch64",
+		},
+	},
 	UPX: {
 		"linux": {
 			"amd64": "amd64",
@@ -172,6 +182,16 @@ var OS = map[string]map[string]map[string]string{
 			"arm64": "unknown-linux-gnu",
 		},
 	},
+	Shellcheck: {
+		"darwin": {
+			"amd64": "darwin",
+			"arm64": "darwin",
+		},
+		"linux": {
+			"amd64": "linux",
+			"arm64": "linux",
+		},
+	},
 	Xh: {
 		"darwin": {
 			"amd64": "apple-darwin",
@@ -202,6 +222,7 @@ var URL = map[string]string{
 	K9s:         "https://github.com/derailed/k9s",
 	Kubectx:     "https://github.com/ahmetb/kubectx",
 	Ripgrep:     "https://github.com/BurntSushi/ripgrep",
+	Shellcheck:  "https://github.com/koalaman/shellcheck",
 	UPX:         "https://github.com/upx/upx",
 	Xh:          "https://github.com/ducaale/xh",
 	Yj:          "https://github.com/sclevine/yj",

@@ -44,6 +44,10 @@ func (s *AssetTestSuite) TestDestination() {
 			dest: "/usr/local/bin/rg",
 		},
 		{
+			name: Shellcheck,
+			dest: "/usr/local/bin/shellcheck",
+		},
+		{
 			name: UPX,
 			dest: "/usr/local/bin/upx",
 		},
@@ -122,6 +126,13 @@ func (s *AssetTestSuite) TestIsBinary() {
 			arch:    "amd64",
 			os:      "linux",
 			version: "14.1.0",
+			binary:  false,
+		},
+		{
+			name:    Shellcheck,
+			arch:    "amd64",
+			os:      "linux",
+			version: "v0.10.0",
 			binary:  false,
 		},
 		{
@@ -217,6 +228,13 @@ func (s *AssetTestSuite) TestName() {
 			filename: "ripgrep-14.1.0-x86_64-unknown-linux-musl.tar.gz",
 		},
 		{
+			name:     Shellcheck,
+			arch:     "amd64",
+			os:       "linux",
+			version:  "v0.10.0",
+			filename: "shellcheck-v0.10.0.linux.x86_64.tar.xz",
+		},
+		{
 			name:     UPX,
 			arch:     "amd64",
 			os:       "linux",
@@ -300,6 +318,13 @@ func (s *AssetTestSuite) TestWithinArchive() {
 			os:            "linux",
 			version:       "14.1.0",
 			withinArchive: "ripgrep-14.1.0-x86_64-unknown-linux-musl/rg",
+		},
+		{
+			name:          Shellcheck,
+			arch:          "amd64",
+			os:            "linux",
+			version:       "v0.10.0",
+			withinArchive: "shellcheck-v0.10.0/shellcheck",
 		},
 		{
 			name:          UPX,
