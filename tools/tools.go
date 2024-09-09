@@ -91,6 +91,8 @@ func (t *Tool) Extract() error {
 
 	tr := tar.NewReader(compFile)
 
+	found := false
+
 	for {
 		hdr, err := tr.Next()
 		if errors.Is(err, io.EOF) {
@@ -105,8 +107,14 @@ func (t *Tool) Extract() error {
 				return fmt.Errorf("saveBinary: %w", err)
 			}
 
+			found = true
+
 			break
 		}
+	}
+
+	if !found {
+		return fmt.Errorf("binary not found in archive: %v", t.Asset.WithinArchive)
 	}
 
 	return nil
