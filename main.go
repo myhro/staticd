@@ -134,6 +134,14 @@ func main() {
 		},
 	}
 
+	shellcheckCmd := &cobra.Command{
+		Use:   tools.Shellcheck,
+		Short: "A static analysis tool for shell scripts",
+		Run: func(cmd *cobra.Command, args []string) {
+			run(tools.Shellcheck)
+		},
+	}
+
 	upxCmd := &cobra.Command{
 		Use:   tools.UPX,
 		Short: "The Ultimate Packer for eXecutables",
@@ -173,6 +181,7 @@ func main() {
 	rootCmd.AddCommand(k9sCmd)
 	rootCmd.AddCommand(kubectxCmd)
 	rootCmd.AddCommand(ripgrepCmd)
+	rootCmd.AddCommand(shellcheckCmd)
 	rootCmd.AddCommand(upxCmd)
 	rootCmd.AddCommand(xhCmd)
 	rootCmd.AddCommand(yjCmd)

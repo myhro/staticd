@@ -19,6 +19,7 @@ const (
 	K9s         = "k9s"
 	Kubectx     = "kubectx"
 	Ripgrep     = "rg"
+	Shellcheck  = "shellcheck"
 	UPX         = "upx"
 	Xh          = "xh"
 	Yj          = "yj"
@@ -168,6 +169,8 @@ func (t *Tool) SetAsset() error {
 		t.AssetKubectx()
 	case Ripgrep:
 		t.AssetRipgrep()
+	case Shellcheck:
+		t.AssetShellcheck()
 	case UPX:
 		t.AssetUPX()
 	case Xh:

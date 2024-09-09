@@ -64,6 +64,10 @@ func (s *ToolsTestSuite) TestSetURL() {
 				url:  "https://github.com/BurntSushi/ripgrep/releases",
 			},
 			{
+				name: Shellcheck,
+				url:  "https://github.com/koalaman/shellcheck/releases",
+			},
+			{
 				name: UPX,
 				url:  "https://github.com/upx/upx/releases",
 			},
