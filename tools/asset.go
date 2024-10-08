@@ -57,6 +57,12 @@ func (t *Tool) AssetUPX() {
 	t.Asset.WithinArchive = path.Join(baseName, t.Name)
 }
 
+func (t *Tool) AssetUv() {
+	baseName := fmt.Sprintf("uv-%v-%v", t.Arch, t.OS)
+	t.Asset.Name = baseName + ".tar.gz"
+	t.Asset.WithinArchive = path.Join(baseName, t.Name)
+}
+
 func (t *Tool) AssetXh() {
 	baseName := fmt.Sprintf("xh-%v-%v-%v", t.Version, t.Arch, t.OS)
 	t.Asset.Name = baseName + ".tar.gz"

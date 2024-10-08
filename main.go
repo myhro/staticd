@@ -150,6 +150,14 @@ func main() {
 		},
 	}
 
+	uvCmd := &cobra.Command{
+		Use:   tools.Uv,
+		Short: "An extremely fast Python package and project manager",
+		Run: func(cmd *cobra.Command, args []string) {
+			run(tools.Uv)
+		},
+	}
+
 	xhCmd := &cobra.Command{
 		Use:   tools.Xh,
 		Short: "Friendly and fast tool for sending HTTP requests",
@@ -183,6 +191,7 @@ func main() {
 	rootCmd.AddCommand(ripgrepCmd)
 	rootCmd.AddCommand(shellcheckCmd)
 	rootCmd.AddCommand(upxCmd)
+	rootCmd.AddCommand(uvCmd)
 	rootCmd.AddCommand(xhCmd)
 	rootCmd.AddCommand(yjCmd)
 	rootCmd.AddCommand(versionCmd)
