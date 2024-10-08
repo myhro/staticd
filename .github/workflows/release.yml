@@ -18,6 +18,8 @@ jobs:
             os: linux
           - arch: arm64
             os: linux
+    env:
+      BINARY: staticd-${{ matrix.job.os }}-${{ matrix.job.arch }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-go@v3
@@ -28,7 +30,7 @@ jobs:
           sudo go run main.go upx
       - name: Build
         env:
-          BINARY: staticd-${{ matrix.job.os }}-${{ matrix.job.arch }}
+          BINARY: ${{ env.BINARY }}
           GOARCH: ${{ matrix.job.arch }}
           GOOS: ${{ matrix.job.os }}
         run: |
@@ -37,32 +39,32 @@ jobs:
         if: matrix.job.os != 'darwin'
         run: |
           make upx
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
-          path: dist/
-          name: dist
+          path: dist/${{ env.BINARY }}
+          name: ${{ env.BINARY }}
   release:
     needs: build
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v4
         with:
-          path: dist/
-          name: dist
+          pattern: staticd-*
+          merge-multiple: true
       - uses: softprops/action-gh-release@v1
         if: contains(github.ref, '-rc')
         with:
           files: |
-            dist/staticd-darwin-amd64
-            dist/staticd-darwin-arm64
-            dist/staticd-linux-amd64
-            dist/staticd-linux-arm64
+            staticd-darwin-amd64
+            staticd-darwin-arm64
+            staticd-linux-amd64
+            staticd-linux-arm64
           prerelease: true
       - uses: softprops/action-gh-release@v1
         if: contains(github.ref, '-rc') == false
         with:
           files: |
-            dist/staticd-darwin-amd64
-            dist/staticd-darwin-arm64
-            dist/staticd-linux-amd64
-            dist/staticd-linux-arm64
+            staticd-darwin-amd64
+            staticd-darwin-arm64
+            staticd-linux-amd64
+            staticd-linux-arm64
