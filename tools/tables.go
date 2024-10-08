@@ -166,12 +166,6 @@ var OS = map[string]map[string]map[string]string{
 			"arm64": "linux",
 		},
 	},
-	UPX: {
-		"linux": {
-			"amd64": "linux",
-			"arm64": "linux",
-		},
-	},
 	Ripgrep: {
 		"darwin": {
 			"amd64": "apple-darwin",
@@ -187,6 +181,12 @@ var OS = map[string]map[string]map[string]string{
 			"amd64": "darwin",
 			"arm64": "darwin",
 		},
+		"linux": {
+			"amd64": "linux",
+			"arm64": "linux",
+		},
+	},
+	UPX: {
 		"linux": {
 			"amd64": "linux",
 			"arm64": "linux",
