@@ -1,3 +1,4 @@
+//nolint:dupl
 package tools
 
 var Arch = map[string]map[string]map[string]string{
@@ -83,6 +84,16 @@ var Arch = map[string]map[string]map[string]string{
 		"linux": {
 			"amd64": "amd64",
 			"arm64": "arm64",
+		},
+	},
+	Uv: {
+		"darwin": {
+			"amd64": "x86_64",
+			"arm64": "aarch64",
+		},
+		"linux": {
+			"amd64": "x86_64",
+			"arm64": "aarch64",
 		},
 	},
 	Xh: {
@@ -192,6 +203,16 @@ var OS = map[string]map[string]map[string]string{
 			"arm64": "linux",
 		},
 	},
+	Uv: {
+		"darwin": {
+			"amd64": "apple-darwin",
+			"arm64": "apple-darwin",
+		},
+		"linux": {
+			"amd64": "unknown-linux-gnu",
+			"arm64": "unknown-linux-gnu",
+		},
+	},
 	Xh: {
 		"darwin": {
 			"amd64": "apple-darwin",
@@ -224,6 +245,7 @@ var URL = map[string]string{
 	Ripgrep:     "https://github.com/BurntSushi/ripgrep",
 	Shellcheck:  "https://github.com/koalaman/shellcheck",
 	UPX:         "https://github.com/upx/upx",
+	Uv:          "https://github.com/astral-sh/uv",
 	Xh:          "https://github.com/ducaale/xh",
 	Yj:          "https://github.com/sclevine/yj",
 }

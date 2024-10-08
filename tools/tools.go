@@ -21,6 +21,7 @@ const (
 	Ripgrep     = "rg"
 	Shellcheck  = "shellcheck"
 	UPX         = "upx"
+	Uv          = "uv"
 	Xh          = "xh"
 	Yj          = "yj"
 )
@@ -173,6 +174,8 @@ func (t *Tool) SetAsset() error {
 		t.AssetShellcheck()
 	case UPX:
 		t.AssetUPX()
+	case Uv:
+		t.AssetUv()
 	case Xh:
 		t.AssetXh()
 	case Yj:
