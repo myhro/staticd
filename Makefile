@@ -9,7 +9,7 @@ clean:
 	rm -rf dist/
 
 golangci-lint:
-	go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.51.1
+	go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.60.3
 
 gotestsum:
 	go install gotest.tools/gotestsum@v1.10.0

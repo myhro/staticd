@@ -1,12 +1,13 @@
 ---
 issues:
   exclude-rules:
-    - path: tables/.*\.go
+    - path: tools/tables.go
       linters:
         - dupl
 linters:
   enable-all: true
   disable:
+    - depguard
     - exhaustivestruct
     - exhaustruct
     - forbidigo
@@ -21,5 +22,10 @@ linters:
     - paralleltest
     - testpackage
     - varnamelen
+linters-settings:
+  revive:
+    rules:
+      - name: unused-parameter
+        disabled: true
 run:
   tests: false

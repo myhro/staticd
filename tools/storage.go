@@ -38,6 +38,7 @@ func saveBinary(src io.Reader, dest string) error {
 		return fmt.Errorf("saveFile: %w", err)
 	}
 
+	//nolint:mnd
 	err = os.Chmod(dest, 0755)
 	if err != nil {
 		return fmt.Errorf("os.Chmod: %w", err)

@@ -1,4 +1,3 @@
-//nolint:dupl
 package tools
 
 var Arch = map[string]map[string]map[string]string{
