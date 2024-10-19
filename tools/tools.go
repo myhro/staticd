@@ -18,6 +18,7 @@ const (
 	Flyctl      = "flyctl"
 	K9s         = "k9s"
 	Kubectx     = "kubectx"
+	Lazygit     = "lazygit"
 	Ripgrep     = "rg"
 	Shellcheck  = "shellcheck"
 	UPX         = "upx"
@@ -168,6 +169,8 @@ func (t *Tool) SetAsset() error {
 		t.AssetK9s()
 	case Kubectx:
 		t.AssetKubectx()
+	case Lazygit:
+		t.AssetLazygit()
 	case Ripgrep:
 		t.AssetRipgrep()
 	case Shellcheck:

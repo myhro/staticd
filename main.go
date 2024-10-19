@@ -126,6 +126,14 @@ func main() {
 		},
 	}
 
+	lazygitCmd := &cobra.Command{
+		Use:   tools.Lazygit,
+		Short: "Simple terminal UI for git commands",
+		Run: func(cmd *cobra.Command, args []string) {
+			run(tools.Lazygit)
+		},
+	}
+
 	ripgrepCmd := &cobra.Command{
 		Use:   tools.Ripgrep,
 		Short: "Recursively searches directories for a regex pattern",
@@ -188,6 +196,7 @@ func main() {
 	rootCmd.AddCommand(flyctlCmd)
 	rootCmd.AddCommand(k9sCmd)
 	rootCmd.AddCommand(kubectxCmd)
+	rootCmd.AddCommand(lazygitCmd)
 	rootCmd.AddCommand(ripgrepCmd)
 	rootCmd.AddCommand(shellcheckCmd)
 	rootCmd.AddCommand(upxCmd)

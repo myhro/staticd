@@ -59,6 +59,16 @@ var Arch = map[string]map[string]map[string]string{
 			"arm64": "arm64",
 		},
 	},
+	Lazygit: {
+		"darwin": {
+			"amd64": "x86_64",
+			"arm64": "arm64",
+		},
+		"linux": {
+			"amd64": "x86_64",
+			"arm64": "arm64",
+		},
+	},
 	Ripgrep: {
 		"darwin": {
 			"amd64": "x86_64",
@@ -176,6 +186,16 @@ var OS = map[string]map[string]map[string]string{
 			"arm64": "linux",
 		},
 	},
+	Lazygit: {
+		"darwin": {
+			"amd64": "Darwin",
+			"arm64": "Darwin",
+		},
+		"linux": {
+			"amd64": "Linux",
+			"arm64": "Linux",
+		},
+	},
 	Ripgrep: {
 		"darwin": {
 			"amd64": "apple-darwin",
@@ -241,6 +261,7 @@ var URL = map[string]string{
 	Flyctl:      "https://github.com/superfly/flyctl",
 	K9s:         "https://github.com/derailed/k9s",
 	Kubectx:     "https://github.com/ahmetb/kubectx",
+	Lazygit:     "https://github.com/jesseduffield/lazygit",
 	Ripgrep:     "https://github.com/BurntSushi/ripgrep",
 	Shellcheck:  "https://github.com/koalaman/shellcheck",
 	UPX:         "https://github.com/upx/upx",

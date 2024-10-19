@@ -37,6 +37,10 @@ func (t *Tool) AssetKubectx() {
 	t.Asset.Name = fmt.Sprintf("kubectx_%v_%v_%v.tar.gz", t.Version, t.OS, t.Arch)
 }
 
+func (t *Tool) AssetLazygit() {
+	t.Asset.Name = fmt.Sprintf("lazygit_%v_%v_%v.tar.gz", t.TrimVersion(), t.OS, t.Arch)
+}
+
 func (t *Tool) AssetRipgrep() {
 	baseName := fmt.Sprintf("ripgrep-%v-%v-%v", t.Version, t.Arch, t.OS)
 	t.Asset.Name = baseName + ".tar.gz"
