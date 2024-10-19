@@ -12,7 +12,7 @@ golangci-lint:
 	go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.60.3
 
 gotestsum:
-	go install gotest.tools/gotestsum@v1.10.0
+	go install gotest.tools/gotestsum@v1.12.0
 
 lint:
 	golangci-lint run
