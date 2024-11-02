@@ -16,6 +16,7 @@ const (
 	Bottom      = "btm"
 	Cloudflared = "cloudflared"
 	Flyctl      = "flyctl"
+	Hugo        = "hugo"
 	K9s         = "k9s"
 	Kubectx     = "kubectx"
 	Ripgrep     = "rg"
@@ -173,6 +174,8 @@ func (t *Tool) SetAsset() error {
 		t.AssetCloudflared()
 	case Flyctl:
 		t.AssetFlyctl()
+	case Hugo:
+		t.AssetHugo()
 	case K9s:
 		t.AssetK9s()
 	case Kubectx:
