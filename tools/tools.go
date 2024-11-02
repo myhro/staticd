@@ -109,6 +109,11 @@ func (t *Tool) Extract() error {
 				return fmt.Errorf("saveBinary: %w", err)
 			}
 
+			err = os.Chtimes(t.Asset.Destination, hdr.AccessTime, hdr.ModTime)
+			if err != nil {
+				return fmt.Errorf("os.Chtimes: %w", err)
+			}
+
 			found = true
 
 			break
