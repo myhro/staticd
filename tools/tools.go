@@ -123,6 +123,10 @@ func (t *Tool) Extract() error {
 }
 
 func (t *Tool) GetVersion() error {
+	if t.Version != "latest" {
+		return nil
+	}
+
 	client := &http.Client{
 		CheckRedirect: func(req *http.Request, via []*http.Request) error {
 			return http.ErrUseLastResponse

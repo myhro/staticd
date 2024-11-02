@@ -19,10 +19,11 @@ func exit(msg string) {
 	os.Exit(1)
 }
 
-func run(name string) {
+func run(name string, version string) {
 	tool := &tools.Tool{
-		Name: name,
-		User: &tools.UserOS{},
+		Name:    name,
+		User:    &tools.UserOS{},
+		Version: version,
 	}
 
 	err := tool.SetURL()
@@ -68,7 +69,21 @@ func run(name string) {
 	fmt.Println("Done")
 }
 
-//nolint:funlen
+func newCommand(name string, description string) *cobra.Command {
+	return &cobra.Command{
+		Use:   name + " [version]",
+		Short: description,
+		Args:  cobra.MaximumNArgs(1),
+		Run: func(cmd *cobra.Command, args []string) {
+			version := "latest"
+			if len(args) == 1 {
+				version = args[0]
+			}
+			run(name, version)
+		},
+	}
+}
+
 func main() {
 	rootCmd := &cobra.Command{
 		Use:   "staticd",
@@ -78,101 +93,18 @@ func main() {
 		},
 	}
 
-	batCmd := &cobra.Command{
-		Use:   tools.Bat,
-		Short: "A cat(1) clone with wings",
-		Run: func(cmd *cobra.Command, args []string) {
-			run(tools.Bat)
-		},
-	}
-
-	bottomCmd := &cobra.Command{
-		Use:   tools.Bottom,
-		Short: "Yet another cross-platform graphical process/system monitor",
-		Run: func(cmd *cobra.Command, args []string) {
-			run(tools.Bottom)
-		},
-	}
-
-	cloudflaredCmd := &cobra.Command{
-		Use:   tools.Cloudflared,
-		Short: "Argo Tunnel client",
-		Run: func(cmd *cobra.Command, args []string) {
-			run(tools.Cloudflared)
-		},
-	}
-
-	flyctlCmd := &cobra.Command{
-		Use:   tools.Flyctl,
-		Short: "Command line tools for fly.io services",
-		Run: func(cmd *cobra.Command, args []string) {
-			run(tools.Flyctl)
-		},
-	}
-
-	k9sCmd := &cobra.Command{
-		Use:   tools.K9s,
-		Short: "Kubernetes CLI To Manage Your Clusters In Style",
-		Run: func(cmd *cobra.Command, args []string) {
-			run(tools.K9s)
-		},
-	}
-
-	kubectxCmd := &cobra.Command{
-		Use:   tools.Kubectx,
-		Short: "Faster way to switch between clusters in kubectl",
-		Run: func(cmd *cobra.Command, args []string) {
-			run(tools.Kubectx)
-		},
-	}
-
-	ripgrepCmd := &cobra.Command{
-		Use:   tools.Ripgrep,
-		Short: "Recursively searches directories for a regex pattern",
-		Run: func(cmd *cobra.Command, args []string) {
-			run(tools.Ripgrep)
-		},
-	}
-
-	shellcheckCmd := &cobra.Command{
-		Use:   tools.Shellcheck,
-		Short: "A static analysis tool for shell scripts",
-		Run: func(cmd *cobra.Command, args []string) {
-			run(tools.Shellcheck)
-		},
-	}
-
-	upxCmd := &cobra.Command{
-		Use:   tools.UPX,
-		Short: "The Ultimate Packer for eXecutables",
-		Run: func(cmd *cobra.Command, args []string) {
-			run(tools.UPX)
-		},
-	}
-
-	uvCmd := &cobra.Command{
-		Use:   tools.Uv,
-		Short: "An extremely fast Python package and project manager",
-		Run: func(cmd *cobra.Command, args []string) {
-			run(tools.Uv)
-		},
-	}
-
-	xhCmd := &cobra.Command{
-		Use:   tools.Xh,
-		Short: "Friendly and fast tool for sending HTTP requests",
-		Run: func(cmd *cobra.Command, args []string) {
-			run(tools.Xh)
-		},
-	}
-
-	yjCmd := &cobra.Command{
-		Use:   tools.Yj,
-		Short: "Convert between YAML, TOML, JSON, and HCL",
-		Run: func(cmd *cobra.Command, args []string) {
-			run(tools.Yj)
-		},
-	}
+	batCmd := newCommand(tools.Bat, "A cat(1) clone with wings")
+	bottomCmd := newCommand(tools.Bottom, "Yet another cross-platform graphical process/system monitor")
+	cloudflaredCmd := newCommand(tools.Cloudflared, "Argo Tunnel client")
+	flyctlCmd := newCommand(tools.Flyctl, "Command line tools for fly.io services")
+	k9sCmd := newCommand(tools.K9s, "Kubernetes CLI To Manage Your Clusters In Style")
+	kubectxCmd := newCommand(tools.Kubectx, "Faster way to switch between clusters in kubectl")
+	ripgrepCmd := newCommand(tools.Ripgrep, "Recursively searches directories for a regex pattern")
+	shellcheckCmd := newCommand(tools.Shellcheck, "A static analysis tool for shell scripts")
+	upxCmd := newCommand(tools.UPX, "The Ultimate Packer for eXecutables")
+	uvCmd := newCommand(tools.Uv, "An extremely fast Python package and project manager")
+	xhCmd := newCommand(tools.Xh, "Friendly and fast tool for sending HTTP requests")
+	yjCmd := newCommand(tools.Yj, "Convert between YAML, TOML, JSON, and HCL")
 
 	versionCmd := &cobra.Command{
 		Use:   "version",
