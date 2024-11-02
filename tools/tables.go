@@ -39,6 +39,16 @@ var Arch = map[string]map[string]map[string]string{
 			"arm64": "arm64",
 		},
 	},
+	Hugo: {
+		"darwin": {
+			"amd64": "universal",
+			"arm64": "universal",
+		},
+		"linux": {
+			"amd64": "amd64",
+			"arm64": "arm64",
+		},
+	},
 	K9s: {
 		"darwin": {
 			"amd64": "amd64",
@@ -156,6 +166,16 @@ var OS = map[string]map[string]map[string]string{
 			"arm64": "Linux",
 		},
 	},
+	Hugo: {
+		"darwin": {
+			"amd64": "darwin",
+			"arm64": "darwin",
+		},
+		"linux": {
+			"amd64": "linux",
+			"arm64": "linux",
+		},
+	},
 	K9s: {
 		"darwin": {
 			"amd64": "Darwin",
@@ -239,6 +259,7 @@ var URL = map[string]string{
 	Bottom:      "https://github.com/ClementTsang/bottom",
 	Cloudflared: "https://github.com/cloudflare/cloudflared",
 	Flyctl:      "https://github.com/superfly/flyctl",
+	Hugo:        "https://github.com/gohugoio/hugo",
 	K9s:         "https://github.com/derailed/k9s",
 	Kubectx:     "https://github.com/ahmetb/kubectx",
 	Ripgrep:     "https://github.com/BurntSushi/ripgrep",

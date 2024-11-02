@@ -29,6 +29,10 @@ func (t *Tool) AssetFlyctl() {
 	t.Asset.Name = fmt.Sprintf("flyctl_%v_%v_%v.tar.gz", t.TrimVersion(), t.OS, t.Arch)
 }
 
+func (t *Tool) AssetHugo() {
+	t.Asset.Name = fmt.Sprintf("hugo_%v_%v-%v.tar.gz", t.TrimVersion(), t.OS, t.Arch)
+}
+
 func (t *Tool) AssetK9s() {
 	t.Asset.Name = fmt.Sprintf("k9s_%v_%v.tar.gz", t.OS, t.Arch)
 }
