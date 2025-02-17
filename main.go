@@ -93,6 +93,7 @@ func main() {
 		},
 	}
 
+	asdfCmd := newCommand(tools.Asdf, "Extendable version manager with support for multiple runtimes")
 	batCmd := newCommand(tools.Bat, "A cat(1) clone with wings")
 	bottomCmd := newCommand(tools.Bottom, "Yet another cross-platform graphical process/system monitor")
 	cloudflaredCmd := newCommand(tools.Cloudflared, "Argo Tunnel client")
@@ -115,6 +116,7 @@ func main() {
 		},
 	}
 
+	rootCmd.AddCommand(asdfCmd)
 	rootCmd.AddCommand(batCmd)
 	rootCmd.AddCommand(bottomCmd)
 	rootCmd.AddCommand(cloudflaredCmd)

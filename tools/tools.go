@@ -12,6 +12,7 @@ import (
 )
 
 const (
+	Asdf        = "asdf"
 	Bat         = "bat"
 	Bottom      = "btm"
 	Cloudflared = "cloudflared"
@@ -166,6 +167,8 @@ func (t *Tool) SetAsset() error {
 	t.Asset.WithinArchive = t.Name
 
 	switch t.Name {
+	case Asdf:
+		t.AssetAsdf()
 	case Bat:
 		t.AssetBat()
 	case Bottom:

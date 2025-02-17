@@ -5,6 +5,10 @@ import (
 	"path"
 )
 
+func (t *Tool) AssetAsdf() {
+	t.Asset.Name = fmt.Sprintf("asdf-%v-%v-%v.tar.gz", t.Version, t.OS, t.Arch)
+}
+
 func (t *Tool) AssetBat() {
 	baseName := fmt.Sprintf("bat-%v-%v-%v", t.Version, t.Arch, t.OS)
 	t.Asset.Name = baseName + ".tar.gz"

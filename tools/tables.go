@@ -1,6 +1,16 @@
 package tools
 
 var Arch = map[string]map[string]map[string]string{
+	Asdf: {
+		"darwin": {
+			"amd64": "amd64",
+			"arm64": "arm64",
+		},
+		"linux": {
+			"amd64": "amd64",
+			"arm64": "arm64",
+		},
+	},
 	Bat: {
 		"darwin": {
 			"amd64": "x86_64",
@@ -128,6 +138,16 @@ var Arch = map[string]map[string]map[string]string{
 }
 
 var OS = map[string]map[string]map[string]string{
+	Asdf: {
+		"darwin": {
+			"amd64": "darwin",
+			"arm64": "darwin",
+		},
+		"linux": {
+			"amd64": "linux",
+			"arm64": "linux",
+		},
+	},
 	Bat: {
 		"darwin": {
 			"amd64": "apple-darwin",
@@ -255,6 +275,7 @@ var OS = map[string]map[string]map[string]string{
 }
 
 var URL = map[string]string{
+	Asdf:        "https://github.com/asdf-vm/asdf",
 	Bat:         "https://github.com/sharkdp/bat",
 	Bottom:      "https://github.com/ClementTsang/bottom",
 	Cloudflared: "https://github.com/cloudflare/cloudflared",
